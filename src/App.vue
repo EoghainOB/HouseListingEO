@@ -6,14 +6,18 @@
     <div class="wrapper">
       <router-view></router-view>
     </div>
+    <footer>
+      <FooterMenu />
+    </footer>
   </div>
 </template>
 
 <script>
 import HeaderMenu from './components/headerMenu.vue'
+import FooterMenu from './components/footerMenu.vue'
 
 export default {
-  components: { HeaderMenu },
+  components: { HeaderMenu, FooterMenu },
   computed: {
     createEdit() {
       return this.$route.path === '/house/create' || this.$route.path === '/house/edit'
@@ -31,6 +35,10 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f6f6f6;
+}
+
+footer {
+  display: none;
 }
 
 .background-container {
@@ -78,5 +86,18 @@ li {
 
 p {
   line-height: 2;
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    width: 100%;
+    margin: 0px;
+  }
+  header {
+    display: none;
+  }
+  footer {
+    display: block;
+  }
 }
 </style>

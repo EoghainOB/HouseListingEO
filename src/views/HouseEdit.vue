@@ -15,4 +15,10 @@ export default {
   components: { BackOverview, InputForm }
 }
 </script>
-<style></style>
+<style>
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+  .listItem {
+    background-color: aqua;
+  }
+}
+</style>

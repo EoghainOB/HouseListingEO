@@ -1,19 +1,29 @@
 <template>
-  <router-link to="/">
+  <div @click="handleClick">
     <div class="return">
       <div>
         <img src="../components/icons/ic_back_grey@3x.png" alt="Return" />
       </div>
       <div>
-        <h3>Back to overview</h3>
+        <h3 v-if="$route.path.startsWith('/house/edit')">Back to detail page</h3>
+        <h3 v-else>Back to overview</h3>
       </div>
     </div>
-  </router-link>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'BackOverview'
+  name: 'BackOverview',
+  methods: {
+    handleClick() {
+      if (this.$route.path.startsWith('/house/edit')) {
+        window.history.back()
+      } else {
+        this.$router.push('/')
+      }
+    }
+  }
 }
 </script>
 
@@ -21,6 +31,7 @@ export default {
 .return {
   padding-top: 50px;
   padding-bottom: 10px;
+  cursor: pointer;
 }
 .return img {
   padding-right: 8px;

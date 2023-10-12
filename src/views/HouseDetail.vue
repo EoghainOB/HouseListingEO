@@ -192,4 +192,48 @@ p {
   height: auto;
   border-radius: 0px;
 }
+
+@media only screen and (max-width: 768px) {
+  .houseDetail {
+    margin-top: 0px;
+  }
+  .listItem {
+    padding: 10px;
+  }
+  .listingDetails {
+    padding: 4px;
+    margin-left: 10px;
+  }
+  ul {
+    margin-bottom: 80px;
+  }
+  h1 {
+    font-size: 14px;
+  }
+  h4,
+  p {
+    font-size: 12px;
+  }
+
+  .locationText,
+  .locationPrice {
+    padding-bottom: 0px;
+  }
+  .homeBed img,
+  .homeBath img,
+  .homeSize img,
+  .homeBuilt img,
+  .locationZipCity img,
+  .locationPrice img,
+  .homeBuilt img,
+  .homeGarage img {
+    padding-right: 8px;
+    height: 14px;
+  }
+  .homeImage img {
+    width: 100%;
+    height: auto;
+    border-radius: 0px;
+  }
+}
 </style>

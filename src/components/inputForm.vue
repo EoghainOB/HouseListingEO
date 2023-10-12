@@ -244,6 +244,10 @@ export default {
     async submitForm() {
       this.clearError('image')
 
+      if (!this.formData.image) {
+        this.errors.image = true
+      }
+
       if (!this.$refs.imageInput.checkValidity()) {
         this.errors.image = true
       }
@@ -282,9 +286,11 @@ export default {
     },
     handleImageUpload() {
       const imageInput = this.$refs.imageInput
-      this.clearError('image')
+      const imageFile = imageInput.files[0]
 
-      if (!imageInput.files[0]) {
+      this.formData.image = imageFile ? imageFile : null
+
+      if (!this.formData.image) {
         this.errors.image = true
       } else {
         this.errors.image = false
@@ -336,7 +342,8 @@ form {
   max-width: 450px;
 }
 
-input {
+input,
+select {
   width: 96%;
   background-color: #ffffff;
   height: 48px;
@@ -349,15 +356,7 @@ input {
   padding-left: 15px;
 }
 select {
-  background-color: #ffffff;
   height: 50px;
-  border: none;
-  font-size: 14px;
-  font-weight: 400;
-  border-radius: 10px;
-  margin-top: 10px;
-  margin-bottom: 15px;
-  padding-left: 15px;
 }
 .inputsFlex {
   display: flex;

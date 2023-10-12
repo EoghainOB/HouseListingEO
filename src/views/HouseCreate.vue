@@ -1,7 +1,7 @@
 <template>
   <BackOverview />
   <div>
-    <div class="sectionTitle"><h1>Create new listing</h1></div>
+    <div><h1>Create new listing</h1></div>
   </div>
   <InputForm />
 </template>

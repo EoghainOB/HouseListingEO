@@ -40,6 +40,8 @@ export default {
 .topStrip {
   box-shadow: 0px 0px 14px -5px rgba(0, 0, 0, 0.14);
   height: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .headerMenu {
   display: flex;

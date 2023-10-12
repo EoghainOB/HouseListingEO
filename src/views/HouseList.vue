@@ -3,12 +3,17 @@
   <SearchFilter v-model="searchQuery" @filterChanged="updateFilter" />
   <div>
     <ul class="houseListing">
-      <div class="houseListEmpty" v-if="filteredHouses < 1 && searchQuery.length > 1">
+      <div class="houseListEmpty" v-if="filteredHouses < 1 && searchQuery.length > 0">
         <img src="@/components/images/img_empty_houses@3x.png" alt="No results" />
         <p>
           No results found<br />
           Please try another keyword.
         </p>
+      </div>
+      <div class="resultsFound" v-if="searchQuery.length > 0">
+        <h2>
+          {{ filteredHouses.length }} result<span v-if="filteredHouses.length !== 1">s</span> found
+        </h2>
       </div>
       <li
         @click="showDetails(house.id)"
@@ -201,5 +206,49 @@ h4 {
 }
 .houseListEmpty img {
   width: 50%;
+}
+.resultsFound {
+  padding-top: 10px;
+}
+.houseListing {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media only screen and (max-width: 768px) {
+  .listItem {
+    padding: 10px;
+  }
+  .listingDetails {
+    padding: 4px;
+    margin-left: 10px;
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+  }
+  .homeImage img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  ul {
+    margin-bottom: 80px;
+  }
+  h2 {
+    font-size: 14px;
+  }
+  h4 {
+    font-size: 12px;
+  }
+  .locationText,
+  .locationPrice {
+    padding-bottom: 0px;
+  }
+  .homeBed img,
+  .homeBath img,
+  .homeSize img {
+    padding-right: 8px;
+    height: 14px;
+  }
 }
 </style>

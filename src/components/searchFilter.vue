@@ -11,7 +11,7 @@
             placeholder="Search for a house"
           />
         </div>
-        <div v-if="searchQuery" @click="clearSearchQuery()">
+        <div v-if="searchQuery" @click="clearSearchQuery()" class="clearIcon">
           <img src="src/components/icons/ic_clear@3x.png" alt="clear" />
         </div>
       </form>
@@ -68,6 +68,7 @@ export default {
 .filterMenu {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   padding-top: 20px;
   padding-bottom: 10px;
   border-radius: 10px;
@@ -79,7 +80,6 @@ export default {
 
 .mainSearch {
   display: flex;
-  align-items: center;
   width: 100%;
 }
 
@@ -134,5 +134,40 @@ input:focus-visible {
 .priceButton.active,
 .sizeButton.active {
   background-color: #eb5440;
+}
+.filterMenu {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media only screen and (max-width: 768px) {
+  .filterButtons {
+    width: 100%;
+  }
+  .priceButton,
+  .sizeButton {
+    font-size: 12px;
+    padding: 12px 70px 12px 70px;
+    width: 50%;
+    text-align: center;
+  }
+  .inputForm {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .inputForm input {
+    height: 32px;
+    font-size: 14px;
+  }
+  .mainSearch {
+    height: 38px;
+  }
+  .inputForm img {
+    height: 18px;
+    padding: 10px;
+  }
+  .clearIcon img {
+    height: 18px;
+    width: 18px;
+  }
 }
 </style>
