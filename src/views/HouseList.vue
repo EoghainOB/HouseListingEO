@@ -3,6 +3,13 @@
   <SearchFilter v-model="searchQuery" @filterChanged="updateFilter" />
   <div>
     <ul class="houseListing">
+      <div class="houseListEmpty" v-if="filteredHouses < 1 && searchQuery.length > 1">
+        <img src="@/components/images/img_empty_houses@3x.png" alt="No results" />
+        <p>
+          No results found<br />
+          Please try another keyword.
+        </p>
+      </div>
       <li
         @click="showDetails(house.id)"
         class="listItem"
@@ -186,5 +193,13 @@ h4 {
   height: 170px;
   object-fit: cover;
   border-radius: 10px;
+}
+.houseListEmpty {
+  width: 100%;
+  text-align: center;
+  padding: 60px;
+}
+.houseListEmpty img {
+  width: 50%;
 }
 </style>
