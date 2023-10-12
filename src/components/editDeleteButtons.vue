@@ -20,7 +20,7 @@ export default {
   name: 'EditDeleteBtns',
   components: { ModalPopup },
   props: {
-    houseId: Object
+    houseId: Number
   },
   data() {
     return {
