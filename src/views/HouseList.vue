@@ -22,7 +22,7 @@
                   {{ house.location.houseNumberAddition }}
                 </h2>
               </div>
-              <EditDeleteBtns v-if="house.id > 1100" :houseId="house.id" />
+              <EditDeleteBtns v-if="house.madeByMe" :houseId="house.id" />
             </div>
             <div class="locationPrice">
               <h4>€ {{ house.price.toLocaleString('en-NL') }}</h4>

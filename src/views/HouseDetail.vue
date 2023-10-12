@@ -16,7 +16,7 @@
                   {{ house.location.houseNumberAddition }}
                 </h1>
               </div>
-              <EditDeleteBtns v-if="house.id > 1100" :houseId="house.id" />
+              <EditDeleteBtns v-if="house.madeByMe" :houseId="house.id" />
             </div>
             <div class="locationZipCity">
               <h4>
