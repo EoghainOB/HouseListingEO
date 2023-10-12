@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import apiService from '@/services/apiService'
+import { mapGetters, mapActions } from 'vuex'
 import CreateMenu from '@/components/createMenu.vue'
 import SearchFilter from '@/components/searchFilter.vue'
 import EditDeleteBtns from '@/components/editDeleteButtons.vue'
@@ -68,7 +68,6 @@ export default {
   components: { CreateMenu, SearchFilter, EditDeleteBtns },
   data() {
     return {
-      houses: [],
       currentFilter: 'Price',
       searchQuery: ''
     }
@@ -77,41 +76,39 @@ export default {
     this.fetchHouses()
   },
   methods: {
-    fetchHouses() {
-      apiService
-        .getHouses()
-        .then((response) => {
-          this.houses = response.data
-        })
-        .catch((error) => {
-          console.error('Error fetching houses:', error)
-        })
-    },
+    ...mapActions(['fetchHouses']),
     showDetails(houseId) {
       this.$router.push({ name: 'HouseDetail', params: { houseId: houseId } })
     },
-    updateFilter(filter) {
+    updateFilter({ filter, searchQuery }) {
       this.currentFilter = filter
+      this.searchQuery = searchQuery
     }
   },
   computed: {
+    ...mapGetters(['allHouses']),
     filteredHouses() {
-      let sortedHouses = [...this.houses]
+      let sortedHouses = [...this.allHouses]
+
       if (this.currentFilter === 'Price') {
         sortedHouses.sort((a, b) => a.price - b.price)
       } else if (this.currentFilter === 'Size') {
         sortedHouses.sort((a, b) => a.size - b.size)
       }
+
       if (this.searchQuery) {
         const query = this.searchQuery.toLowerCase()
-        sortedHouses = sortedHouses.filter(
-          (house) =>
-            house.title.toLowerCase().includes(query) ||
+        sortedHouses = sortedHouses.filter((house) => {
+          const location = house.location
+          return (
+            (location.street + location.houseNumber + location.houseNumberAddition)
+              .toLowerCase()
+              .includes(query) ||
             house.price.toString().includes(query) ||
-            house.location.zip.includes(query) ||
-            house.size.toString().includes(query) ||
-            house.location.city.toLowerCase().includes(query)
-        )
+            (location.zip + ', ' + location.city).toLowerCase().includes(query) ||
+            house.size.toString().includes(query)
+          )
+        })
       }
       return sortedHouses
     }

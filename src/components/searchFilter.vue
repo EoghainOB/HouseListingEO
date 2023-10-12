@@ -4,7 +4,15 @@
       <form class="mainSearch">
         <div><img src="src/components/icons/ic_search@3x.png" alt="search" /></div>
         <div class="inputField">
-          <input name="searchHouses" type="text" placeholder="Search for a house" />
+          <input
+            v-model="searchQuery"
+            name="searchHouses"
+            type="text"
+            placeholder="Search for a house"
+          />
+        </div>
+        <div v-if="searchQuery" @click="clearSearchQuery()">
+          <img src="src/components/icons/ic_clear@3x.png" alt="clear" />
         </div>
       </form>
     </div>
@@ -30,15 +38,27 @@
 <script>
 export default {
   name: 'SearchFilter',
-  methods: {
-    changeFilter(filter) {
-      this.activeFilter = filter
-      this.$emit('filterChanged', filter)
+  watch: {
+    searchQuery: {
+      handler: function (newVal) {
+        this.$emit('filterChanged', { filter: this.activeFilter, searchQuery: newVal })
+      },
+      immediate: true
     }
   },
   data() {
     return {
+      searchQuery: '',
       activeFilter: 'Price'
+    }
+  },
+  methods: {
+    changeFilter(filter) {
+      this.activeFilter = filter
+      this.$emit('filterChanged', { filter, searchQuery: this.searchQuery })
+    },
+    clearSearchQuery() {
+      this.searchQuery = ''
     }
   }
 }
