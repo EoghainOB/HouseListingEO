@@ -3,17 +3,17 @@
   <SearchFilter v-model="searchQuery" @filterChanged="updateFilter" />
   <div>
     <ul class="houseListing">
-      <div class="houseListEmpty" v-if="filteredHouses < 1 && searchQuery.length > 0">
-        <img src="@/components/images/img_empty_houses@3x.png" alt="No results" />
-        <p>
-          No results found<br />
-          Please try another keyword.
-        </p>
-      </div>
       <div class="resultsFound" v-if="searchQuery.length > 0">
-        <h2>
+        <h2 v-if="filteredHouses.length > 0">
           {{ filteredHouses.length }} result<span v-if="filteredHouses.length !== 1">s</span> found
         </h2>
+      </div>
+      <div class="houseListEmpty" v-if="filteredHouses < 1 && searchQuery.length > 0">
+        <img src="@/components/images/img_empty_houses@3x.png" alt="No results" />
+        <h3>
+          No results found<br />
+          Please try another keyword.
+        </h3>
       </div>
       <li
         @click="showDetails(house.id)"
@@ -187,6 +187,11 @@ h2 {
   margin: 0px;
 }
 
+h3 {
+  font-size: 18px;
+  font-weight: normal;
+}
+
 h4 {
   margin: 0;
   font-size: 16px;
@@ -200,9 +205,8 @@ h4 {
   border-radius: 10px;
 }
 .houseListEmpty {
-  width: 100%;
   text-align: center;
-  padding: 60px;
+  padding: 40px;
 }
 .houseListEmpty img {
   width: 50%;
@@ -219,6 +223,11 @@ h4 {
   .listItem {
     padding: 10px;
   }
+
+  h3 {
+    font-size: 14px;
+    font-weight: normal;
+  }
   .listingDetails {
     padding: 4px;
     margin-left: 10px;
@@ -230,6 +239,14 @@ h4 {
     height: 90px;
     object-fit: cover;
     border-radius: 10px;
+  }
+  .houseListEmpty {
+    text-align: center;
+    padding: 10px;
+    margin-top: 40px;
+  }
+  .houseListEmpty img {
+    width: 80%;
   }
   ul {
     margin-bottom: 80px;

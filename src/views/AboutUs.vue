@@ -42,15 +42,15 @@ p {
 .sectionTitle {
   display: none;
 }
-.aboutPage {
-  padding-left: 15px;
-  padding-right: 15px;
-}
 @media only screen and (max-width: 768px) {
+  .aboutPage {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
   .sectionTitle {
     display: block;
     text-align: center;
-    padding-top: 30px;
+    padding-top: 20px;
   }
   .devAbout {
     display: flex;

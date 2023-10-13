@@ -1,9 +1,11 @@
 <template>
-  <BackOverview />
-  <div>
-    <div><h1>Create new listing</h1></div>
+  <div class="formContainer">
+    <BackOverview />
+    <div>
+      <div><h1>Create new listing</h1></div>
+    </div>
+    <InputForm />
   </div>
-  <InputForm />
 </template>
 
 <script>
@@ -15,4 +17,17 @@ export default {
   components: { BackOverview, InputForm }
 }
 </script>
-<style></style>
+<style scoped>
+.formContainer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media only screen and (max-width: 768px) {
+  .formContainer {
+    margin-bottom: 80px;
+  }
+  h1 {
+    font-size: 18px;
+  }
+}
+</style>

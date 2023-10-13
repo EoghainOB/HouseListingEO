@@ -5,6 +5,10 @@
       <div class="createButtonDesktop">
         <img src="src/components/icons/ic_plus_white@3x.png" />CREATE NEW
       </div>
+    </router-link>
+  </div>
+  <div class="btnMobile">
+    <router-link to="/house/create">
       <div class="createButtonMobile">
         <img src="src/components/icons/ic_plus_grey@3x.png" />
       </div>
@@ -52,6 +56,8 @@ export default {
   .subMenu {
     margin-top: 20px;
     height: 50px;
+    text-align: center;
+    justify-content: center;
   }
   .createButtonMobile {
     display: block;
@@ -59,8 +65,8 @@ export default {
   .createButtonDesktop {
     display: none;
   }
-  .sectionTitle {
-    margin: auto;
+  h1 {
+    font-size: 18px;
   }
   .sectionTitle h1 {
     font-size: 18px;
@@ -68,6 +74,11 @@ export default {
   .createButtonMobile img {
     height: 18px;
     margin-right: 10px;
+  }
+  .btnMobile {
+    position: absolute;
+    right: 12px;
+    top: 35px;
   }
 }
 </style>

@@ -77,4 +77,20 @@ export default {
 .goBackButton {
   background-color: #4a4b4c;
 }
+@media only screen and (max-width: 768px) {
+  .goBackButton,
+  .deleteButton {
+    font-size: 12px;
+    padding: 12px 30px 12px 30px;
+  }
+  .modal-content {
+    background: #fff;
+    width: 85%;
+    padding: 30px;
+    border-radius: 15px;
+  }
+  .modal-overlay p {
+    font-size: 12px;
+  }
+}
 </style>

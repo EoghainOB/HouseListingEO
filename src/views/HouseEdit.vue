@@ -16,7 +16,7 @@ export default {
 }
 </script>
 <style>
-@media only screen and (min-width: 600px) and (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   .listItem {
     background-color: aqua;
   }

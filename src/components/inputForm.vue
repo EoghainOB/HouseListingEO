@@ -413,4 +413,24 @@ select {
   border-radius: 10px;
   margin-top: 10px;
 }
+@media only screen and (max-width: 768px) {
+  input,
+  select,
+  label {
+    font-size: 12px;
+  }
+  .postButton {
+    text-align: center;
+    font-size: 12px;
+    padding: 12px 70px 12px 70px;
+    width: 100%;
+  }
+  .error-text h3 {
+    font-size: 12px;
+  }
+  .submit {
+    margin-top: 20px;
+    padding-bottom: 10px;
+  }
+}
 </style>

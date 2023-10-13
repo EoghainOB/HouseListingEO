@@ -1,10 +1,10 @@
 <template>
   <div class="editDelButtons">
     <div @click="editHouse($event)">
-      <img src="../components/icons/ic_edit@3x.png" alt="edit" />
+      <img src="/src/components/icons/ic_edit@3x.png" alt="edit" />
     </div>
     <div @click="openModal($event)">
-      <img src="../components/icons/ic_delete@3x.png" alt="delete" />
+      <img src="/src/components/icons/ic_delete@3x.png" alt="delete" />
     </div>
   </div>
   <div class="modal-overlay" v-if="isModalOpen">
@@ -49,6 +49,11 @@ export default {
         query: { houseId: this.houseId }
       })
     }
+  },
+  computed: {
+    isMobile() {
+      return window.innerWidth <= 768
+    }
   }
 }
 </script>
@@ -62,5 +67,12 @@ export default {
   padding-right: 8px;
   height: 25px;
   margin-left: 20px;
+}
+@media only screen and (max-width: 768px) {
+  .editDelButtons img {
+    padding-right: 6px;
+    height: 14px;
+    margin-left: 8px;
+  }
 }
 </style>

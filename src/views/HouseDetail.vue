@@ -5,6 +5,9 @@
       <div v-if="house">
         <div class="homeImage">
           <img v-if="house.image" :src="house.image" />
+          <div class="editDelMobile">
+            <EditDeleteBtns v-if="house.madeByMe" :houseId="house.id" />
+          </div>
         </div>
         <div class="listingDetails">
           <div class="listingText">
@@ -16,7 +19,9 @@
                   {{ house.location.houseNumberAddition }}
                 </h1>
               </div>
-              <EditDeleteBtns v-if="house.madeByMe" :houseId="house.id" />
+              <div class="editDelDesktop">
+                <EditDeleteBtns v-if="house.madeByMe" :houseId="house.id" />
+              </div>
             </div>
             <div class="locationZipCity">
               <h4>
@@ -134,6 +139,14 @@ export default {
   justify-content: space-between;
 }
 
+.editDelDesktop {
+  display: flex;
+  align-items: center;
+}
+.editDelMobile {
+  display: none;
+}
+
 .iconDetails {
   display: flex;
   flex-flow: row wrap;
@@ -213,6 +226,19 @@ p {
   h4,
   p {
     font-size: 12px;
+  }
+  .editDelMobile {
+    display: block;
+    position: absolute;
+    top: 35px;
+    right: 15px;
+  }
+  .editDelDesktop {
+    display: none;
+  }
+  .secondaryDetails,
+  .locationZipCity {
+    padding-bottom: 10px;
   }
 
   .locationText,
