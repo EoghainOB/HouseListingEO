@@ -1,5 +1,6 @@
 <template>
   <div class="filterMenu">
+    <!-- Input field for searching houses -->
     <div class="inputForm">
       <form class="mainSearch">
         <div><img src="src/components/icons/ic_search@3x.png" alt="search" /></div>
@@ -11,11 +12,13 @@
             placeholder="Search for a house"
           />
         </div>
+        <!-- Clear search icon (visible when search query is not empty) -->
         <div v-if="searchQuery" @click="clearSearchQuery()" class="clearIcon">
           <img src="src/components/icons/ic_clear@3x.png" alt="clear" />
         </div>
       </form>
     </div>
+    <!-- Filter buttons for sorting houses by price and size -->
     <div class="filterButtons">
       <div
         class="priceButton"
@@ -39,6 +42,7 @@
 export default {
   name: 'SearchFilter',
   watch: {
+    // Watch for changes in the search query
     searchQuery: {
       handler: function (newVal) {
         this.$emit('filterChanged', { filter: this.activeFilter, searchQuery: newVal })
@@ -54,6 +58,7 @@ export default {
   },
   methods: {
     changeFilter(filter) {
+      // Change the active filter (Price or Size)
       this.activeFilter = filter
       this.$emit('filterChanged', { filter, searchQuery: this.searchQuery })
     },

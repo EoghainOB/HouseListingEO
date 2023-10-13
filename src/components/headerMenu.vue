@@ -7,6 +7,7 @@
         </div>
         <div class="topMenu">
           <nav>
+            <!-- Link to the Houses page (with dynamic active class) -->
             <router-link
               to="/"
               class="nav-link"
@@ -16,6 +17,7 @@
             >
               Houses
             </router-link>
+            <!-- Link to the About page (with dynamic active class) -->
             <router-link
               to="/about"
               class="nav-link"

@@ -91,10 +91,12 @@ export default {
     }
   },
   created() {
+    // Get the house ID from the route parameters
     const houseId = this.$route.params.houseId
     this.fetchHouseDetails(houseId)
   },
   methods: {
+    // Call the API service to get house details by ID
     fetchHouseDetails(houseId) {
       apiService
         .getHouseById(houseId)

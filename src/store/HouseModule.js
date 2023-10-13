@@ -5,6 +5,7 @@ const houseModule = {
     houses: []
   },
   mutations: {
+    // Mutation to update the "houses" state property with fetched house data
     setHouses(state, houses) {
       state.houses = houses
     }
@@ -20,6 +21,7 @@ const houseModule = {
     }
   },
   getters: {
+    // Getter to retrieve all the houses from the state
     allHouses: (state) => state.houses
   }
 }

@@ -1,5 +1,6 @@
 <template>
   <form @submit.prevent="submitForm" enctype="multipart/form-data">
+    <!-- Input fields for address information -->
     <div>
       <label>Street name*</label>
       <input
@@ -64,6 +65,7 @@
       <span v-if="showError('city')" class="error-text"><h3>Required field missing.</h3></span>
     </div>
     <div>
+      <!-- If in edit mode, display the current image -->
       <div v-if="isEditPage" class="currentImage">
         <label>Current Image*</label>
         <div>
@@ -197,6 +199,7 @@ export default {
   },
   data() {
     return {
+      // Form data and validation errors
       formData: {
         price: null,
         bedrooms: null,
@@ -216,6 +219,7 @@ export default {
     }
   },
   created() {
+    // Load existing property data if in edit mode
     this.houseId = this.$route.query.houseId
 
     if (this.houseId) {
@@ -246,7 +250,9 @@ export default {
     }
   },
   methods: {
+    // Function to handle form submission
     async submitForm() {
+      // Clear any previous error related to image
       this.clearError('image')
 
       if (!this.formData.image) {
@@ -254,9 +260,11 @@ export default {
       }
 
       if (!this.$refs.imageInput.checkValidity()) {
+        // Check the validity of the image input element, and if it's not valid, set an error flag for image
         this.errors.image = true
       }
       if (this.isFormValid()) {
+        // If the entire form is valid, proceed to handle form submission
         const imageInput = this.$refs.imageInput
         const imageFile = imageInput.files[0]
 
@@ -264,12 +272,15 @@ export default {
           let response
 
           if (this.isEditPage) {
+            // If the form is in edit mode, update the existing property listing
             if (imageFile) {
+              // If a new image is selected, upload it
               const imageUploadResponse = await apiService.uploadImage(this.houseId, imageFile)
               console.log('Image uploaded:', imageUploadResponse.data)
             }
             response = await apiService.updateHouse(this.houseId, this.formData)
           } else {
+            // If the form is not in edit mode, create a new property listing
             if (imageFile) {
               response = await apiService.createHouse(this.formData)
               const houseId = response.data.id
@@ -282,6 +293,7 @@ export default {
           }
 
           if (this.isEditPage) {
+            // If it's an edit page, redirect to the updated property details page
             this.$router.push(`/house/${this.houseId}`)
           }
         } catch (error) {
@@ -290,6 +302,7 @@ export default {
       }
     },
     handleImageUpload() {
+      // Function to handle image upload
       const imageInput = this.$refs.imageInput
       const imageFile = imageInput.files[0]
 
@@ -302,6 +315,7 @@ export default {
       }
     },
     isFormValid() {
+      // Function to validate the form data
       this.errors = {}
       let isValid = true
 
@@ -330,9 +344,11 @@ export default {
       return isValid
     },
     showError(fieldName) {
+      // Function to check if an error should be displayed for a field
       return this.errors[fieldName]
     },
     clearError(fieldName) {
+      // Function to clear errors for a field
       this.errors[fieldName] = false
     }
   }

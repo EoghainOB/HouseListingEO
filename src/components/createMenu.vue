@@ -1,12 +1,14 @@
 <template>
   <div class="subMenu">
     <div><h1>Houses</h1></div>
+    <!-- Link to create a new house (desktop) -->
     <router-link to="/house/create">
       <div class="createButtonDesktop">
         <img src="src/components/icons/ic_plus_white@3x.png" />CREATE NEW
       </div>
     </router-link>
   </div>
+  <!-- Mobile version of the create button -->
   <div class="btnMobile">
     <router-link to="/house/create">
       <div class="createButtonMobile">

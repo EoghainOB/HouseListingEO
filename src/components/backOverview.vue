@@ -1,12 +1,14 @@
 <template>
   <div @click="handleClick">
     <div class="return">
+      <!-- Conditional class for the return arrow based on route and device -->
       <div
         :class="{
           returnArrowWhite: isHouseDetail && isMobile,
           returnArrowGrey: !isMobile || !isHouseDetail
         }"
       >
+        <!-- Dynamic image source for the return arrow -->
         <img
           :src="
             isHouseDetail && isMobile
@@ -17,6 +19,7 @@
         />
       </div>
       <div class="returnText">
+        <!-- Conditional text based on the route -->
         <h3 v-if="$route.path.startsWith('/house/edit')">Back to detail page</h3>
         <h3 v-else>Back to overview</h3>
       </div>
@@ -29,6 +32,7 @@ export default {
   name: 'BackOverview',
   methods: {
     handleClick() {
+      // Handle navigation based on the route
       if (this.$route.path.startsWith('/house/edit')) {
         window.history.back()
       } else {
@@ -38,6 +42,7 @@ export default {
   },
   computed: {
     isHouseDetail() {
+      // Check if the current route is the detail page
       return this.$route.name === 'HouseDetail'
     },
     isMobile() {

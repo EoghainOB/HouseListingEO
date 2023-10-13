@@ -3,6 +3,7 @@
     <div class="footerMenu">
       <div class="bottomMenu">
         <div class="navIcons">
+          <!-- Link to the Home page with dynamic icon -->
           <router-link to="/" class="nav-link">
             <img
               :src="
@@ -15,6 +16,7 @@
           </router-link>
         </div>
         <div class="navIcons">
+          <!-- Link to the About page with dynamic icon -->
           <router-link to="/about" class="nav-link">
             <img
               :src="

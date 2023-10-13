@@ -3,6 +3,7 @@
   <SearchFilter v-model="searchQuery" @filterChanged="updateFilter" />
   <div>
     <ul class="houseListing">
+      <!-- Display number of results found or display message if no results found -->
       <div class="resultsFound" v-if="searchQuery.length > 0">
         <h2 v-if="filteredHouses.length > 0">
           {{ filteredHouses.length }} result<span v-if="filteredHouses.length !== 1">s</span> found
@@ -15,6 +16,7 @@
           Please try another keyword.
         </h3>
       </div>
+      <!-- Loop through and display property listings -->
       <li
         @click="showDetails(house.id)"
         class="listItem"
@@ -85,11 +87,14 @@ export default {
     }
   },
   created() {
+    // Fetch property listings when the component is created
     this.fetchHouses()
   },
   methods: {
+    // Map Vuex actions for fetching property listings
     ...mapActions(['fetchHouses']),
     showDetails(houseId) {
+      // Navigate to the property details page
       this.$router.push({ name: 'HouseDetail', params: { houseId: houseId } })
     },
     updateFilter({ filter, searchQuery }) {
@@ -98,19 +103,23 @@ export default {
     }
   },
   computed: {
+    // Map Vuex getters to access property listings
     ...mapGetters(['allHouses']),
     filteredHouses() {
       let sortedHouses = []
 
       if (Array.isArray(this.allHouses)) {
+        // Create a copy of property listings for sorting
         sortedHouses = [...this.allHouses]
 
+        // Sort property listings
         if (this.currentFilter === 'Price') {
           sortedHouses.sort((a, b) => a.price - b.price)
         } else if (this.currentFilter === 'Size') {
           sortedHouses.sort((a, b) => a.size - b.size)
         }
 
+        // Filter property listings based on search query
         if (this.searchQuery) {
           const query = this.searchQuery.toLowerCase()
           sortedHouses = sortedHouses.filter((house) => {
@@ -126,7 +135,6 @@ export default {
           })
         }
       }
-
       return sortedHouses
     }
   }
