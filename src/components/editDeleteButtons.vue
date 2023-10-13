@@ -1,10 +1,18 @@
 <template>
   <div class="editDelButtons">
     <div @click="editHouse($event)">
-      <img src="/src/components/icons/ic_edit@3x.png" alt="edit" />
+      <img
+        :src="isMobile ? (isHomePage ? mobileIcons.edit : desktopIcons.edit) : desktopIcons.edit"
+        alt="edit"
+      />
     </div>
     <div @click="openModal($event)">
-      <img src="/src/components/icons/ic_delete@3x.png" alt="delete" />
+      <img
+        :src="
+          isMobile ? (isHomePage ? mobileIcons.delete : desktopIcons.delete) : desktopIcons.delete
+        "
+        alt="delete"
+      />
     </div>
   </div>
   <div class="modal-overlay" v-if="isModalOpen">
@@ -24,7 +32,15 @@ export default {
   },
   data() {
     return {
-      isModalOpen: false
+      isModalOpen: false,
+      desktopIcons: {
+        edit: '/src/components/icons/ic_edit@3x.png',
+        delete: '/src/components/icons/ic_delete@3x.png'
+      },
+      mobileIcons: {
+        edit: '/src/components/icons/ic_edit_white@3x.png',
+        delete: '/src/components/icons/ic_delete_white@3x.png'
+      }
     }
   },
   methods: {
@@ -53,6 +69,9 @@ export default {
   computed: {
     isMobile() {
       return window.innerWidth <= 768
+    },
+    isHomePage() {
+      return this.$route.path.startsWith('/house/')
     }
   }
 }

@@ -180,7 +180,7 @@
       >
     </div>
     <div class="submit">
-      <button class="postButton" type="submit">POST</button>
+      <button class="postButton" type="submit">{{ buttonText }}</button>
     </div>
   </form>
 </template>
@@ -190,6 +190,11 @@ import apiService from '@/services/apiService'
 
 export default {
   name: 'InputForm',
+  props: {
+    buttonText: {
+      type: String
+    }
+  },
   data() {
     return {
       formData: {
@@ -203,7 +208,7 @@ export default {
         zip: '',
         city: '',
         constructionYear: null,
-        hasGarage: null,
+        hasGarage: false,
         description: ''
       },
       errors: {},

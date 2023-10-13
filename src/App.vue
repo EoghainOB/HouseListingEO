@@ -41,13 +41,6 @@ footer {
   display: none;
 }
 
-.background-container {
-  background-image: url('./components/images/img_background@3x.png');
-  background-repeat: no-repeat;
-  background-size: 100vw;
-  background-attachment: fixed;
-}
-
 .wrapper {
   width: 100%;
   max-width: 1200px;

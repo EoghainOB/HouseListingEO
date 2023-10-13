@@ -1,11 +1,20 @@
 <template>
   <div @click="handleClick">
     <div class="return">
-      <div class="returnArrowGrey">
-        <img src="../components/icons/ic_back_grey@3x.png" alt="Return" />
-      </div>
-      <div class="returnArrowWhite">
-        <img src="../components/icons/ic_back_white@3x.png" alt="Return" />
+      <div
+        :class="{
+          returnArrowWhite: isHouseDetail && isMobile,
+          returnArrowGrey: !isMobile || !isHouseDetail
+        }"
+      >
+        <img
+          :src="
+            isHouseDetail && isMobile
+              ? '/src/components/icons/ic_back_white@3x.png'
+              : '/src/components/icons/ic_back_grey@3x.png'
+          "
+          alt="Return"
+        />
       </div>
       <div class="returnText">
         <h3 v-if="$route.path.startsWith('/house/edit')">Back to detail page</h3>
@@ -25,6 +34,14 @@ export default {
       } else {
         this.$router.push('/')
       }
+    }
+  },
+  computed: {
+    isHouseDetail() {
+      return this.$route.name === 'HouseDetail'
+    },
+    isMobile() {
+      return window.innerWidth <= 768
     }
   }
 }
@@ -51,23 +68,12 @@ h3 {
   font-weight: 400;
   font-size: 16px;
 }
-.returnArrowGrey {
-  display: block;
-}
-.returnArrowWhite {
-  display: none;
-}
+
 @media only screen and (max-width: 768px) {
   .return {
     position: absolute;
     padding-top: 35px;
     margin-left: 15px;
-  }
-  .returnArrowWhite {
-    display: block;
-  }
-  .returnArrowGrey {
-    display: none;
   }
   .returnText {
     display: none;

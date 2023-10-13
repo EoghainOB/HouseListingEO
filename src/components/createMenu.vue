@@ -68,9 +68,7 @@ export default {
   h1 {
     font-size: 18px;
   }
-  .sectionTitle h1 {
-    font-size: 18px;
-  }
+
   .createButtonMobile img {
     height: 18px;
     margin-right: 10px;
