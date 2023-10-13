@@ -346,7 +346,6 @@ label {
 form {
   max-width: 450px;
 }
-
 input,
 select {
   width: 96%;

@@ -65,9 +65,6 @@ export default {
   .createButtonDesktop {
     display: none;
   }
-  h1 {
-    font-size: 18px;
-  }
 
   .createButtonMobile img {
     height: 18px;

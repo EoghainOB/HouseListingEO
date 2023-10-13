@@ -100,28 +100,33 @@ export default {
   computed: {
     ...mapGetters(['allHouses']),
     filteredHouses() {
-      let sortedHouses = [...this.allHouses]
+      let sortedHouses = []
 
-      if (this.currentFilter === 'Price') {
-        sortedHouses.sort((a, b) => a.price - b.price)
-      } else if (this.currentFilter === 'Size') {
-        sortedHouses.sort((a, b) => a.size - b.size)
+      if (Array.isArray(this.allHouses)) {
+        sortedHouses = [...this.allHouses]
+
+        if (this.currentFilter === 'Price') {
+          sortedHouses.sort((a, b) => a.price - b.price)
+        } else if (this.currentFilter === 'Size') {
+          sortedHouses.sort((a, b) => a.size - b.size)
+        }
+
+        if (this.searchQuery) {
+          const query = this.searchQuery.toLowerCase()
+          sortedHouses = sortedHouses.filter((house) => {
+            const location = house.location
+            return (
+              (location.street + location.houseNumber + location.houseNumberAddition)
+                .toLowerCase()
+                .includes(query) ||
+              house.price.toString().includes(query) ||
+              (location.zip + ', ' + location.city).toLowerCase().includes(query) ||
+              house.size.toString().includes(query)
+            )
+          })
+        }
       }
 
-      if (this.searchQuery) {
-        const query = this.searchQuery.toLowerCase()
-        sortedHouses = sortedHouses.filter((house) => {
-          const location = house.location
-          return (
-            (location.street + location.houseNumber + location.houseNumberAddition)
-              .toLowerCase()
-              .includes(query) ||
-            house.price.toString().includes(query) ||
-            (location.zip + ', ' + location.city).toLowerCase().includes(query) ||
-            house.size.toString().includes(query)
-          )
-        })
-      }
       return sortedHouses
     }
   }
@@ -140,31 +145,26 @@ export default {
   box-shadow: 0px 0px 14px -5px rgba(0, 0, 0, 0.14);
   cursor: pointer;
 }
-
 .listingDetails {
   padding: 10px;
   margin-left: 10px;
   width: 100%;
 }
-
 .locationText,
 .locationPrice,
 .locationZipCity {
   padding-bottom: 10px;
 }
-
 .addressEditLine {
   display: flex;
   justify-content: space-between;
 }
-
 .iconDetails {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   padding-right: 8px;
 }
-
 .homeBed,
 .homeBath,
 .homeSize {
@@ -172,32 +172,27 @@ export default {
   align-items: center;
   margin-right: 10px;
 }
-
 .homeBed img,
 .homeBath img,
 .homeSize img {
   padding-right: 8px;
   height: 17px;
 }
-
 h2 {
   color: #000000;
   font-weight: bold;
   font-size: 22px;
   margin: 0px;
 }
-
 h3 {
   font-size: 18px;
   font-weight: normal;
 }
-
 h4 {
   margin: 0;
   font-size: 16px;
   color: #4a4b4c;
 }
-
 .homeImage img {
   width: 170px;
   height: 170px;
@@ -217,16 +212,12 @@ h4 {
 .houseListing {
   padding-left: 15px;
   padding-right: 15px;
+  margin-bottom: 40px;
 }
 
 @media only screen and (max-width: 768px) {
   .listItem {
     padding: 10px;
-  }
-
-  h3 {
-    font-size: 14px;
-    font-weight: normal;
   }
   .listingDetails {
     padding: 4px;
@@ -254,6 +245,9 @@ h4 {
   h2 {
     font-size: 14px;
   }
+  h3 {
+    font-size: 14px;
+  }
   h4 {
     font-size: 12px;
   }
@@ -266,6 +260,9 @@ h4 {
   .homeSize img {
     padding-right: 8px;
     height: 14px;
+  }
+  .houseListing {
+    margin-bottom: 80px;
   }
 }
 </style>

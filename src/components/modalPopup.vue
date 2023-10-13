@@ -1,14 +1,12 @@
 <template>
-  <div class="modal">
-    <div class="modal-content">
-      <h2>Delete Listing</h2>
-      <p>
-        Are you sure you want to delete this listing?<br />
-        This action can not be undone
-      </p>
-      <div class="deleteButton" @click="deleteHouse">YES, DELETE</div>
-      <div class="goBackButton" @click="closeModal">GO BACK</div>
-    </div>
+  <div class="modal-content">
+    <h2>Delete Listing</h2>
+    <p>
+      Are you sure you want to delete this listing?<br />
+      This action can not be undone
+    </p>
+    <div class="deleteButton" @click="deleteHouse">YES, DELETE</div>
+    <div class="goBackButton" @click="closeModal">GO BACK</div>
   </div>
 </template>
 
@@ -85,7 +83,7 @@ export default {
   }
   .modal-content {
     background: #fff;
-    width: 85%;
+    width: 75%;
     padding: 30px;
     border-radius: 15px;
   }

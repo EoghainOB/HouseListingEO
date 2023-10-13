@@ -1,15 +1,13 @@
 <template>
-  <div :class="{ 'background-container': createEdit }">
-    <header>
-      <HeaderMenu />
-    </header>
-    <div class="wrapper">
-      <router-view></router-view>
-    </div>
-    <footer>
-      <FooterMenu />
-    </footer>
+  <header>
+    <HeaderMenu />
+  </header>
+  <div class="wrapper">
+    <router-view></router-view>
   </div>
+  <footer>
+    <FooterMenu />
+  </footer>
 </template>
 
 <script>
@@ -17,12 +15,7 @@ import HeaderMenu from './components/headerMenu.vue'
 import FooterMenu from './components/footerMenu.vue'
 
 export default {
-  components: { HeaderMenu, FooterMenu },
-  computed: {
-    createEdit() {
-      return this.$route.path === '/house/create' || this.$route.path === '/house/edit'
-    }
-  }
+  components: { HeaderMenu, FooterMenu }
 }
 </script>
 
@@ -47,11 +40,6 @@ footer {
   margin: auto;
 }
 
-header {
-  height: 80px;
-  background-color: #ffffff;
-}
-
 h1,
 h2,
 h3,
@@ -67,6 +55,10 @@ p,
 input {
   font-family: 'Open Sans', sans-serif;
   text-decoration: none;
+}
+
+h1 {
+  font-size: 32px;
 }
 
 ul {
@@ -91,6 +83,9 @@ p {
   }
   footer {
     display: block;
+  }
+  h1 {
+    font-size: 18px;
   }
 }
 </style>

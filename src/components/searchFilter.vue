@@ -73,31 +73,25 @@ export default {
   padding-bottom: 10px;
   border-radius: 10px;
 }
-
 .inputField {
   width: 100%;
 }
-
 .mainSearch {
   display: flex;
   width: 100%;
 }
-
 .inputForm {
   background-color: #e8e8e8;
   width: 35%;
   border-radius: 5px;
 }
-
 input:focus-visible {
   outline: none;
 }
-
 .inputForm img {
   height: 20px;
   padding: 15px;
 }
-
 .inputForm input {
   width: 95%;
   background-color: #e8e8e8;
@@ -106,11 +100,9 @@ input:focus-visible {
   font-size: 18px;
   font-weight: 400;
 }
-
 .filterButtons {
   display: flex;
 }
-
 .priceButton,
 .sizeButton {
   font-family: 'Montserrat', sans-serif;
@@ -119,18 +111,14 @@ input:focus-visible {
   color: white;
   padding: 15px 70px 15px 70px;
   cursor: pointer;
-}
-
-.priceButton {
   background-color: #c3c3c3;
+}
+.priceButton {
   border-radius: 8px 0px 0px 8px;
 }
-
 .sizeButton {
-  background-color: #c3c3c3;
   border-radius: 0px 8px 8px 0px;
 }
-
 .priceButton.active,
 .sizeButton.active {
   background-color: #eb5440;

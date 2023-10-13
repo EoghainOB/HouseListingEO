@@ -24,6 +24,10 @@ export default {
 </script>
 
 <style>
+.aboutPage {
+  padding-left: 15px;
+  padding-right: 15px;
+}
 .devAbout {
   display: flex;
   justify-content: space-between;
@@ -33,8 +37,11 @@ export default {
 }
 .devTag img {
   height: 85px;
+  margin-top: 20px;
 }
-
+.devTag {
+  margin-top: 30px;
+}
 p {
   font-size: 18px;
   color: #4a4b4c;
@@ -43,14 +50,14 @@ p {
   display: none;
 }
 @media only screen and (max-width: 768px) {
-  .aboutPage {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
   .sectionTitle {
     display: block;
     text-align: center;
     padding-top: 20px;
+    margin: auto;
+  }
+  .sectionTitle h1 {
+    font-size: 18px;
   }
   .devAbout {
     display: flex;
@@ -67,12 +74,6 @@ p {
   }
   p {
     font-size: 12px;
-  }
-  .sectionTitle {
-    margin: auto;
-  }
-  .sectionTitle h1 {
-    font-size: 18px;
   }
 }
 </style>

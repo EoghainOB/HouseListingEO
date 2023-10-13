@@ -15,11 +15,12 @@ export default {
   components: { BackOverview, InputForm }
 }
 </script>
+
 <style scoped>
 .formContainer {
   background-image: url('@/components/images/img_background@3x.png');
   background-repeat: no-repeat;
-  background-size: 100vw;
+  background-size: 100%;
   padding-left: 15px;
   padding-right: 15px;
   padding-bottom: 70px;
@@ -32,9 +33,6 @@ export default {
     padding-top: 20px;
     height: 50px;
     text-align: center;
-  }
-  h1 {
-    font-size: 18px;
   }
 }
 </style>

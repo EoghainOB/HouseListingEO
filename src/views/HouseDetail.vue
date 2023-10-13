@@ -120,25 +120,20 @@ export default {
   margin-bottom: 50px;
   box-shadow: 0px 0px 14px -5px rgba(0, 0, 0, 0.14);
 }
-
 .listingDetails {
   padding: 10px 30px 10px 30px;
 }
-
 .locationPrice,
 .locationZipCity {
   padding-bottom: 20px;
 }
-
 .locationText {
   padding: 0;
 }
-
 .addressEditLine {
   display: flex;
   justify-content: space-between;
 }
-
 .editDelDesktop {
   display: flex;
   align-items: center;
@@ -146,21 +141,18 @@ export default {
 .editDelMobile {
   display: none;
 }
-
 .iconDetails {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   padding-right: 8px;
 }
-
 .secondaryDetails {
   display: flex;
   flex-flow: row wrap;
   align-items: baseline;
   padding-right: 8px;
 }
-
 .homeBed,
 .homeBath,
 .homeSize {
@@ -168,7 +160,6 @@ export default {
   align-items: center;
   margin-right: 10px;
 }
-
 .homeBed img,
 .homeBath img,
 .homeSize img,
@@ -180,7 +171,6 @@ export default {
   padding-right: 8px;
   height: 17px;
 }
-
 .locationPrice,
 .homeBuilt,
 .homeSize {
@@ -188,18 +178,15 @@ export default {
   align-items: flex-end;
   margin-right: 20px;
 }
-
 h4 {
   margin: 0;
   font-size: 16px;
   color: #4a4b4c;
 }
-
 p {
   font-size: 18px;
   color: #4a4b4c;
 }
-
 .homeImage img {
   width: 812px;
   height: auto;
@@ -210,18 +197,12 @@ p {
   .houseDetail {
     margin-top: 0px;
   }
-  .listItem {
-    padding: 10px;
-  }
   .listingDetails {
     padding: 4px;
     margin-left: 10px;
   }
   ul {
     margin-bottom: 80px;
-  }
-  h1 {
-    font-size: 14px;
   }
   h4,
   p {
