@@ -1,7 +1,7 @@
 <template>
   <div class="aboutPage">
     <div class="sectionTitle"><h1>About</h1></div>
-    <div class="devAbout"><h1>About DTT Real Estate</h1></div>
+    <div class="devAbout"><h2>About DTT Real Estate</h2></div>
     <div>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut quis voluptatem, corporis
@@ -67,6 +67,9 @@ p {
     height: 1px;
   }
   h1 {
+    font-size: 18px;
+  }
+  h2 {
     font-size: 14px;
   }
   .devTag img {
