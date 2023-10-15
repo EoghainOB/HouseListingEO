@@ -212,7 +212,7 @@ p {
     padding-right: 20px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    z-index: 999;
+    z-index: 99;
   }
   ul {
     margin-bottom: 80px;

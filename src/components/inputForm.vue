@@ -86,6 +86,7 @@
           :class="{ required: errors.image }"
         />
       </div>
+      <span v-if="showError('image')" class="error-text"><h3>Required field missing.</h3></span>
     </div>
     <div>
       <label>Price*</label>
@@ -315,13 +316,13 @@ export default {
       const imageInput = this.$refs.imageInput
       const imageFile = imageInput.files[0]
 
-      this.formData.image = imageFile ? imageFile : null
-
-      if (!this.formData.image) {
+      if (!imageFile) {
         this.errors.image = true
       } else {
         this.errors.image = false
       }
+
+      this.formData.image = imageFile ? imageFile : null
     },
     isFormValid() {
       // Function to validate the form data
