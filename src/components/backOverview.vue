@@ -59,7 +59,8 @@ export default {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  padding-right: 8px;
+  padding-left: 15px;
+  padding-right: 15px;
   cursor: pointer;
 }
 .return img {

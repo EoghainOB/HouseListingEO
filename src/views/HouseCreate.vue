@@ -20,7 +20,7 @@ export default {
 .formContainer {
   background-image: url('@/components/images/img_background@3x.png');
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: 100vw;
   padding-left: 15px;
   padding-right: 15px;
   padding-bottom: 70px;

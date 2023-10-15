@@ -73,13 +73,19 @@
         </div>
       </div>
       <label>Upload picture (PNG or JPG)*</label>
-      <input
-        name="image"
-        type="file"
-        @change="handleImageUpload"
-        ref="imageInput"
-        :class="{ required: errors.image }"
-      />
+      <div class="fileUpload">
+        <label for="imageInput">
+          <img src="@/components/icons/ic_upload@3x.png" alt="Upload Image" />
+        </label>
+        <input
+          id="imageInput"
+          name="image"
+          type="file"
+          @change="handleImageUpload"
+          ref="imageInput"
+          :class="{ required: errors.image }"
+        />
+      </div>
     </div>
     <div>
       <label>Price*</label>
@@ -384,6 +390,19 @@ select {
 select:focus {
   outline: none;
 }
+.fileUpload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 125px;
+  height: 125px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 2px dashed #4a4b4c;
+}
+.fileUpload img {
+  height: 30px;
+}
 .inputsFlex {
   display: flex;
   justify-content: space-between;
@@ -391,6 +410,9 @@ select:focus {
 }
 .sizeInput {
   width: 48%;
+}
+input[type='file'] {
+  display: none;
 }
 .dropdown {
   width: 48%;
