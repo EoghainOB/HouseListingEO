@@ -112,9 +112,9 @@
           name="hasGarage"
           v-model="formData.hasGarage"
           :class="{ required: showError('hasGarage') }"
-          @input="clearError('hasGarage')"
+          @change="clearErrorForHasGarage"
         >
-          <option value="" disabled selected>Select</option>
+          <option value="" disabled>Select</option>
           <option value="true">Yes</option>
           <option value="false">No</option>
         </select>
@@ -211,7 +211,7 @@ export default {
         zip: '',
         city: '',
         constructionYear: null,
-        hasGarage: false,
+        hasGarage: '',
         description: ''
       },
       errors: {},
@@ -301,6 +301,9 @@ export default {
         }
       }
     },
+    clearErrorForHasGarage() {
+      this.clearError('hasGarage')
+    },
     handleImageUpload() {
       // Function to handle image upload
       const imageInput = this.$refs.imageInput
@@ -377,6 +380,9 @@ select {
 }
 select {
   height: 50px;
+}
+select:focus {
+  outline: none;
 }
 .inputsFlex {
   display: flex;
