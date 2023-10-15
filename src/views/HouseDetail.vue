@@ -5,6 +5,7 @@
       <div v-if="house">
         <div class="homeImage">
           <img v-if="house.image" :src="house.image" />
+          <div class="roundedShape"></div>
           <div class="editDelMobile">
             <EditDeleteBtns v-if="house.madeByMe" :houseId="house.id" />
           </div>
@@ -118,6 +119,8 @@ export default {
   justify-content: flex-start;
   background-color: #ffffff;
   margin-top: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
   max-width: 812px;
   margin-bottom: 50px;
   box-shadow: 0px 0px 14px -5px rgba(0, 0, 0, 0.14);
@@ -198,10 +201,18 @@ p {
 @media only screen and (max-width: 768px) {
   .houseDetail {
     margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
   }
   .listingDetails {
-    padding: 4px;
-    margin-left: 10px;
+    background-color: white;
+    position: relative;
+    top: -30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    z-index: 999;
   }
   ul {
     margin-bottom: 80px;
@@ -238,6 +249,9 @@ p {
   .homeGarage img {
     padding-right: 8px;
     height: 14px;
+  }
+  .homeImage {
+    height: auto;
   }
   .homeImage img {
     width: 100%;
