@@ -20,15 +20,13 @@ export default {
 .formContainer {
   background-image: url('@/components/images/img_background@3x.png');
   background-repeat: no-repeat;
+  background-position: center bottom;
   background-size: 100vw;
   padding-left: 15px;
   padding-right: 15px;
   padding-bottom: 70px;
 }
 @media only screen and (max-width: 768px) {
-  .formContainer {
-    background-position: center bottom;
-  }
   .pageTitle {
     padding-top: 20px;
     height: 50px;
