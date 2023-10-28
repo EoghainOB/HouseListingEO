@@ -198,7 +198,7 @@
 import apiService from '@/services/apiService'
 
 export default {
-  name: 'InputForm',
+  name: 'CreateEditForm',
   props: {
     buttonText: {
       type: String

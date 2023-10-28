@@ -4,19 +4,19 @@
       <BackOverview />
       <div class="form-container">
         <div class="page-title"><h1>Create new listing</h1></div>
-        <InputForm buttonText="POST" />
+        <CreateEditForm buttonText="POST" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import BackOverview from '@/components/backOverview.vue'
-import InputForm from '@/components/inputForm.vue'
+import BackOverview from '@/components/BackNavigation.vue'
+import CreateEditForm from '@/components/CreateEditForm.vue'
 
 export default {
   name: 'HouseCreate',
-  components: { BackOverview, InputForm }
+  components: { BackOverview, CreateEditForm }
 }
 </script>
 

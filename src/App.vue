@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import HeaderMenu from '@/components/headerMenu.vue'
-import FooterMenu from '@/components/footerMenu.vue'
+import HeaderMenu from '@/components/HeaderMenu.vue'
+import FooterMenu from '@/components/FooterMenu.vue'
 
 export default {
   components: { HeaderMenu, FooterMenu }

@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import ModalPopup from '@/components/modalPopup.vue'
+import ModalPopup from '@/components/ModalPopup.vue'
 import apiService from '@/services/apiService'
 
 export default {

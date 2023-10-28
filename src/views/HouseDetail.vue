@@ -82,8 +82,8 @@
 
 <script>
 import apiService from '@/services/apiService'
-import BackOverview from '@/components/backOverview.vue'
-import EditDeleteBtns from '@/components/editDeleteButtons.vue'
+import BackOverview from '@/components/BackNavigation.vue'
+import EditDeleteBtns from '@/components/EditDeleteButtons.vue'
 
 export default {
   name: 'HouseDetail',

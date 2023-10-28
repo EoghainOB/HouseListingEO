@@ -76,9 +76,9 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import CreateMenu from '@/components/createMenu.vue'
-import SearchFilter from '@/components/searchFilter.vue'
-import EditDeleteBtns from '@/components/editDeleteButtons.vue'
+import CreateMenu from '@/components/CreateMenu.vue'
+import SearchFilter from '@/components/SearchFilter.vue'
+import EditDeleteBtns from '@/components/EditDeleteButtons.vue'
 
 export default {
   name: 'HouseList',
