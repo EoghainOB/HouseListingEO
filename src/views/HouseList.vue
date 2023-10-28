@@ -1,73 +1,76 @@
 <template>
-  <CreateMenu />
-  <SearchFilter v-model="searchQuery" @filterChanged="updateFilter" />
-  <div>
-    <ul class="houseListing">
-      <!-- Display number of results found or display message if no results found -->
-      <div class="resultsFound" v-if="searchQuery.length > 0">
-        <h2 v-if="filteredHouses.length > 0">
-          {{ filteredHouses.length }} result<span v-if="filteredHouses.length !== 1">s</span> found
-        </h2>
-      </div>
-      <div class="houseListEmpty" v-if="filteredHouses < 1 && searchQuery.length > 0">
-        <img src="@/components/images/img_empty_houses@3x.png" alt="No results" />
-        <h3>
-          No results found<br />
-          Please try another keyword.
-        </h3>
-      </div>
-      <!-- Loop through and display property listings -->
-      <li
-        @click="showDetails(house.id)"
-        class="listItem"
-        v-for="house in filteredHouses"
-        :key="house.id"
-      >
-        <div class="homeImage">
-          <img :src="house.image" />
+  <div class="main">
+    <CreateMenu />
+    <SearchFilter v-model="searchQuery" @filterChanged="updateFilter" />
+    <div>
+      <ul class="house-listing">
+        <!-- Display number of results found or display message if no results found -->
+        <div class="results-found" v-if="searchQuery.length > 0">
+          <h2 v-if="filteredHouses.length > 0">
+            {{ filteredHouses.length }} result<span v-if="filteredHouses.length !== 1">s</span>
+            found
+          </h2>
         </div>
-        <div class="listingDetails">
-          <div class="listingText">
-            <div class="addressEditLine">
-              <div class="locationText">
-                <h2>
-                  {{ house.location.street }}
-                  {{ house.location.houseNumber }}
-                  {{ house.location.houseNumberAddition }}
-                </h2>
+        <div class="house-list-empty" v-if="filteredHouses < 1 && searchQuery.length > 0">
+          <img src="@/assets/images/img_empty_houses@3x.png" alt="No results" />
+          <h3>
+            No results found<br />
+            Please try another keyword.
+          </h3>
+        </div>
+        <!-- Loop through and display property listings -->
+        <li
+          @click="showDetails(house.id)"
+          class="list-item"
+          v-for="house in filteredHouses"
+          :key="house.id"
+        >
+          <div class="home-image">
+            <img :src="house.image" />
+          </div>
+          <div class="listing-details">
+            <div class="listing-text">
+              <div class="address-edit-line">
+                <div class="location-text">
+                  <h2>
+                    {{ house.location.street }}
+                    {{ house.location.houseNumber }}
+                    {{ house.location.houseNumberAddition }}
+                  </h2>
+                </div>
+                <EditDeleteBtns v-if="house.madeByMe" :houseId="house.id" />
               </div>
-              <EditDeleteBtns v-if="house.madeByMe" :houseId="house.id" />
+              <div class="location-price">
+                <h4>€ {{ house.price.toLocaleString('en-NL') }}</h4>
+              </div>
+              <div class="location-zip-city">
+                <h4>{{ house.location.zip }}, {{ house.location.city }}</h4>
+              </div>
             </div>
-            <div class="locationPrice">
-              <h4>€ {{ house.price.toLocaleString('en-NL') }}</h4>
-            </div>
-            <div class="locationZipCity">
-              <h4>{{ house.location.zip }}, {{ house.location.city }}</h4>
+            <div class="icon-details">
+              <div class="home-bed">
+                <div><img src="../assets/icons/ic_bed@3x.png" /></div>
+                <div>
+                  <h4>{{ house.rooms.bedrooms }}</h4>
+                </div>
+              </div>
+              <div class="home-bath">
+                <div><img src="../assets/icons/ic_bath@3x.png" /></div>
+                <div>
+                  <h4>{{ house.rooms.bathrooms }}</h4>
+                </div>
+              </div>
+              <div class="home-size">
+                <div><img src="../assets/icons/ic_size@3x.png" /></div>
+                <div>
+                  <h4>{{ house.size }} m2</h4>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="iconDetails">
-            <div class="homeBed">
-              <div><img src="../components/icons/ic_bed@3x.png" /></div>
-              <div>
-                <h4>{{ house.rooms.bedrooms }}</h4>
-              </div>
-            </div>
-            <div class="homeBath">
-              <div><img src="../components/icons/ic_bath@3x.png" /></div>
-              <div>
-                <h4>{{ house.rooms.bathrooms }}</h4>
-              </div>
-            </div>
-            <div class="homeSize">
-              <div><img src="../components/icons/ic_size@3x.png" /></div>
-              <div>
-                <h4>{{ house.size }} m2</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -142,7 +145,7 @@ export default {
 </script>
 
 <style scoped>
-.listItem {
+.list-item {
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
@@ -153,36 +156,36 @@ export default {
   box-shadow: 0px 0px 14px -5px rgba(0, 0, 0, 0.14);
   cursor: pointer;
 }
-.listingDetails {
+.listing-details {
   padding: 10px;
   margin-left: 10px;
   width: 100%;
 }
-.locationText,
-.locationPrice,
-.locationZipCity {
+.location-text,
+.location-price,
+.location-zip-city {
   padding-bottom: 10px;
 }
-.addressEditLine {
+.address-edit-line {
   display: flex;
   justify-content: space-between;
 }
-.iconDetails {
+.icon-details {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   padding-right: 8px;
 }
-.homeBed,
-.homeBath,
-.homeSize {
+.home-bed,
+.home-bath,
+.home-size {
   display: flex;
   align-items: center;
   margin-right: 10px;
 }
-.homeBed img,
-.homeBath img,
-.homeSize img {
+.home-bed img,
+.home-bath img,
+.home-size img {
   padding-right: 8px;
   height: 17px;
 }
@@ -201,50 +204,50 @@ h4 {
   font-size: 16px;
   color: #4a4b4c;
 }
-.homeImage img {
+.home-image img {
   width: 170px;
   height: 170px;
   object-fit: cover;
   border-radius: 10px;
 }
-.houseListEmpty {
+.house-list-empty {
   text-align: center;
   padding: 40px;
 }
-.houseListEmpty img {
+.house-list-empty img {
   width: 50%;
 }
-.resultsFound {
+.results-found {
   padding-top: 10px;
 }
-.houseListing {
+.house-listing {
   padding-left: 15px;
   padding-right: 15px;
   margin-bottom: 40px;
 }
 
 @media only screen and (max-width: 768px) {
-  .listItem {
+  .list-item {
     padding: 10px;
   }
-  .listingDetails {
+  .listing-details {
     padding: 4px;
     margin-left: 10px;
     border-top-left-radius: 10%;
     border-top-right-radius: 10%;
   }
-  .homeImage img {
+  .home-image img {
     width: 90px;
     height: 90px;
     object-fit: cover;
     border-radius: 10px;
   }
-  .houseListEmpty {
+  .house-list-empty {
     text-align: center;
     padding: 10px;
     margin-top: 40px;
   }
-  .houseListEmpty img {
+  .house-list-empty img {
     width: 80%;
   }
   ul {
@@ -259,17 +262,17 @@ h4 {
   h4 {
     font-size: 12px;
   }
-  .locationText,
-  .locationPrice {
+  .location-text,
+  .location-price {
     padding-bottom: 0px;
   }
-  .homeBed img,
-  .homeBath img,
-  .homeSize img {
+  .home-bed img,
+  .home-bath img,
+  .home-size img {
     padding-right: 8px;
     height: 14px;
   }
-  .houseListing {
+  .house-listing {
     margin-bottom: 80px;
   }
 }

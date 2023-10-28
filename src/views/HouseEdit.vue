@@ -1,8 +1,12 @@
 <template>
-  <BackOverview />
-  <div class="formContainer">
-    <div class="pageTitle"><h1>Edit listing</h1></div>
-    <InputForm buttonText="SAVE" />
+  <div class="wrapper">
+    <div class="main">
+      <BackOverview />
+      <div class="form-container">
+        <div class="page-title"><h1>Edit listing</h1></div>
+        <InputForm buttonText="SAVE" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -16,17 +20,13 @@ export default {
 }
 </script>
 <style scoped>
-.formContainer {
-  background-image: url('@/components/images/img_background@3x.png');
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: 100vw;
+.form-container {
   padding-left: 15px;
   padding-right: 15px;
   padding-bottom: 70px;
 }
 @media only screen and (max-width: 768px) {
-  .pageTitle {
+  .page-title {
     padding-top: 20px;
     height: 50px;
     text-align: center;

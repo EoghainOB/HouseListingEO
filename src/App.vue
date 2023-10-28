@@ -2,17 +2,15 @@
   <header>
     <HeaderMenu />
   </header>
-  <div class="wrapper">
-    <router-view></router-view>
-  </div>
+  <router-view></router-view>
   <footer>
     <FooterMenu />
   </footer>
 </template>
 
 <script>
-import HeaderMenu from './components/headerMenu.vue'
-import FooterMenu from './components/footerMenu.vue'
+import HeaderMenu from '@/components/headerMenu.vue'
+import FooterMenu from '@/components/footerMenu.vue'
 
 export default {
   components: { HeaderMenu, FooterMenu }
@@ -30,14 +28,22 @@ body {
   background-color: #f6f6f6;
 }
 
-footer {
-  display: none;
+.wrapper {
+  margin: 0;
+  background-image: url('@/assets/images/img_background@3x.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
-.wrapper {
+.main {
   width: 100%;
   max-width: 1200px;
   margin: auto;
+}
+
+footer {
+  display: none;
 }
 
 h1,

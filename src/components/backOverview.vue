@@ -12,13 +12,13 @@
         <img
           :src="
             isHouseDetail && isMobile
-              ? '/src/components/icons/ic_back_white@3x.png'
-              : '/src/components/icons/ic_back_grey@3x.png'
+              ? '/src/assets/icons/ic_back_white@3x.png'
+              : '/src/assets/icons/ic_back_grey@3x.png'
           "
           alt="Return"
         />
       </div>
-      <div class="returnText">
+      <div class="return-text">
         <!-- Conditional text based on the route -->
         <h3 v-if="$route.path.startsWith('/house/edit')">Back to detail page</h3>
         <h3 v-else>Back to overview</h3>
@@ -81,7 +81,7 @@ h3 {
     padding-top: 35px;
     margin-left: 0px;
   }
-  .returnText {
+  .return-text {
     display: none;
   }
 }

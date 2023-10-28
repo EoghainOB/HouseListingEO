@@ -1,11 +1,11 @@
 <template>
-  <div class="topStrip">
-    <div class="headerMenu">
-      <div class="headerContents">
-        <div class="headerLogo">
-          <img src="../components/images/img_logo_dtt@3x.png" alt="DTT" />
+  <div class="top-strip">
+    <div class="header-menu">
+      <div class="header-contents">
+        <div class="header-logo">
+          <img src="../assets/images/img_logo_dtt@3x.png" alt="DTT" />
         </div>
-        <div class="topMenu">
+        <div class="top-menu">
           <nav>
             <!-- Link to the Houses page (with dynamic active class) -->
             <router-link
@@ -41,27 +41,27 @@ export default {
 </script>
 
 <style>
-.topStrip {
+.top-strip {
   box-shadow: 0px 0px 14px -5px rgba(0, 0, 0, 0.14);
   background-color: #ffffff;
 }
-.headerMenu {
+.header-menu {
   width: 100%;
   max-width: 1200px;
   margin: auto;
 }
-.headerLogo img {
+.header-logo img {
   height: 45px;
   align-content: center;
 }
-.headerContents {
+.header-contents {
   display: flex;
   align-items: center;
   height: 80px;
   padding-left: 15px;
   padding-right: 15px;
 }
-.topMenu {
+.top-menu {
   margin-left: 30px;
 }
 .nav-link {

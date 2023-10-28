@@ -1,4 +1,4 @@
-import apiService from '../services/apiService.js'
+import apiService from '@/services/apiService.js'
 
 const houseModule = {
   state: {

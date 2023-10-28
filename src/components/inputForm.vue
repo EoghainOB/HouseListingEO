@@ -15,7 +15,7 @@
         ><h3>Required field missing.</h3></span
       >
     </div>
-    <div class="inputsFlex">
+    <div class="inputs-flex">
       <div>
         <label>House number*</label>
         <input
@@ -66,16 +66,16 @@
     </div>
     <div>
       <!-- If in edit mode, display the current image -->
-      <div v-if="isEditPage" class="currentImage">
+      <div v-if="isEditPage" class="current-image">
         <label>Current Image*</label>
         <div>
           <img v-if="formData.image" :src="formData.image" alt="Current Image" />
         </div>
       </div>
       <label>Upload picture (PNG or JPG)*</label>
-      <div class="fileUpload">
+      <div class="file-upload">
         <label for="imageInput">
-          <img src="@/components/icons/ic_upload@3x.png" alt="Upload Image" />
+          <img src="@/assets/icons/ic_upload@3x.png" alt="Upload Image" />
         </label>
         <input
           id="imageInput"
@@ -100,8 +100,8 @@
       />
       <span v-if="showError('price')" class="error-text"><h3>Required field missing.</h3></span>
     </div>
-    <div class="inputsFlex">
-      <div class="sizeInput">
+    <div class="inputs-flex">
+      <div class="size-input">
         <label>Size*</label>
         <input
           name="size"
@@ -130,7 +130,7 @@
         >
       </div>
     </div>
-    <div class="inputsFlex">
+    <div class="inputs-flex">
       <div>
         <label>Bedrooms*</label>
         <input
@@ -189,7 +189,7 @@
       >
     </div>
     <div class="submit">
-      <button class="postButton" type="submit">{{ buttonText }}</button>
+      <button class="post-button" type="submit">{{ buttonText }}</button>
     </div>
   </form>
 </template>
@@ -291,8 +291,6 @@ export default {
             if (imageFile) {
               response = await apiService.createHouse(this.formData)
               const houseId = response.data.id
-              const imageUploadResponse = await apiService.uploadImage(houseId, imageFile)
-              console.log('Image uploaded:', imageUploadResponse.data)
               this.$router.push(`/house/${houseId}`)
             } else {
               console.error('Image is required for creating a new house listing')
@@ -391,7 +389,7 @@ select {
 select:focus {
   outline: none;
 }
-.fileUpload {
+.file-upload {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -401,15 +399,15 @@ select:focus {
   margin-bottom: 10px;
   border: 2px dashed #4a4b4c;
 }
-.fileUpload img {
+.file-upload img {
   height: 30px;
 }
-.inputsFlex {
+.inputs-flex {
   display: flex;
   justify-content: space-between;
   gap: 20px;
 }
-.sizeInput {
+.size-input {
   width: 48%;
 }
 input[type='file'] {
@@ -418,13 +416,13 @@ input[type='file'] {
 .dropdown {
   width: 48%;
 }
-.inputsFlex select {
+.inputs-flex select {
   width: 100%;
 }
-.inputsFlex input {
+.inputs-flex input {
   width: 92%;
 }
-.postButton {
+.post-button {
   background-color: #eb5440;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
@@ -455,7 +453,7 @@ input[type='file'] {
   color: #eb5440;
   margin-bottom: 15px;
 }
-.currentImage img {
+.current-image img {
   width: 170px;
   height: 170px;
   object-fit: cover;
@@ -468,7 +466,7 @@ input[type='file'] {
   label {
     font-size: 12px;
   }
-  .postButton {
+  .post-button {
     text-align: center;
     font-size: 12px;
     padding: 12px 70px 12px 70px;

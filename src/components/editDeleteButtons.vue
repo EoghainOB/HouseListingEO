@@ -1,5 +1,5 @@
 <template>
-  <div class="editDelButtons">
+  <div class="edit-del-buttons">
     <!-- Edit button -->
     <div @click="editHouse($event)">
       <img
@@ -25,7 +25,7 @@
 
 <script>
 import ModalPopup from '@/components/modalPopup.vue'
-import apiService from '../services/apiService'
+import apiService from '@/services/apiService'
 
 export default {
   name: 'EditDeleteBtns',
@@ -37,12 +37,12 @@ export default {
     return {
       isModalOpen: false,
       desktopIcons: {
-        edit: '/src/components/icons/ic_edit@3x.png',
-        delete: '/src/components/icons/ic_delete@3x.png'
+        edit: '/src/assets/icons/ic_edit@3x.png',
+        delete: '/src/assets/icons/ic_delete@3x.png'
       },
       mobileIcons: {
-        edit: '/src/components/icons/ic_edit_white@3x.png',
-        delete: '/src/components/icons/ic_delete_white@3x.png'
+        edit: '/src/assets/icons/ic_edit_white@3x.png',
+        delete: '/src/assets/icons/ic_delete_white@3x.png'
       }
     }
   },
@@ -86,17 +86,17 @@ export default {
 </script>
 
 <style>
-.editDelButtons {
+.edit-del-buttons {
   display: flex;
   align-items: center;
 }
-.editDelButtons img {
+.edit-del-buttons img {
   padding-right: 8px;
   height: 25px;
   margin-left: 20px;
 }
 @media only screen and (max-width: 768px) {
-  .editDelButtons img {
+  .edit-del-buttons img {
     padding-right: 6px;
     height: 14px;
     margin-left: 8px;
