@@ -1,9 +1,11 @@
 <template>
   <form @submit.prevent="submitForm" enctype="multipart/form-data">
     <!-- Input fields for address information -->
+
     <div>
-      <label>Street name*</label>
+      <label for="streetName">Street name*</label>
       <input
+        id="streetName"
         name="streetName"
         type="text"
         placeholder="Enter the street name"
@@ -17,8 +19,9 @@
     </div>
     <div class="inputs-flex">
       <div>
-        <label>House number*</label>
+        <label for="houseNumber">House number*</label>
         <input
+          id="houseNumber"
           name="houseNumber"
           type="number"
           placeholder="Enter house number"
@@ -31,8 +34,9 @@
         >
       </div>
       <div>
-        <label>Addition (optional)</label>
+        <label for="numberAddition">Addition (optional)</label>
         <input
+          id="numberAddition"
           name="numberAddition"
           type="text"
           placeholder="e.g. A"
@@ -41,8 +45,9 @@
       </div>
     </div>
     <div>
-      <label>Postal code*</label>
+      <label for="zip">Postal code*</label>
       <input
+        id="zip"
         name="zip"
         type="text"
         placeholder="e.g. 1000 AA"
@@ -53,8 +58,9 @@
       <span v-if="showError('zip')" class="error-text"><h3>Required field missing.</h3></span>
     </div>
     <div>
-      <label>City*</label>
+      <label for="city">City*</label>
       <input
+        id="city"
         name="city"
         type="text"
         placeholder="e.g. Utrecht"
@@ -64,33 +70,38 @@
       />
       <span v-if="showError('city')" class="error-text"><h3>Required field missing.</h3></span>
     </div>
+
     <div>
-      <!-- If in edit mode, display the current image -->
-      <div v-if="isEditPage" class="current-image">
-        <label>Current Image*</label>
-        <div>
-          <img v-if="formData.image" :src="formData.image" alt="Current Image" />
-        </div>
+      <label for="imageInput">Upload picture (PNG or JPG)*</label>
+      <div class="current-image" v-if="formData.image && !imagePreview">
+        <img :src="formData.image" alt="Current Image" @click="showUploader" />
       </div>
-      <label>Upload picture (PNG or JPG)*</label>
-      <div class="file-upload">
-        <label for="imageInput">
-          <img src="@/assets/icons/ic_upload@3x.png" alt="Upload Image" />
-        </label>
-        <input
-          id="imageInput"
-          name="image"
-          type="file"
-          @change="handleImageUpload"
-          ref="imageInput"
-          :class="{ required: errors.image }"
-        />
+      <div class="current-image" v-if="imagePreview">
+        <img :src="imagePreview" alt="Image Preview" @click="showUploader" />
+      </div>
+
+      <div class="uploader" v-if="!formData.image && !imagePreview">
+        <div class="file-upload">
+          <label>
+            <img src="@/assets/icons/ic_upload@3x.png" alt="Upload Image" />
+            <input
+              id="imageInput"
+              name="image"
+              type="file"
+              @change="handleImageUpload"
+              ref="imageInput"
+              :class="{ required: errors.image }"
+            />
+          </label>
+        </div>
       </div>
       <span v-if="showError('image')" class="error-text"><h3>Required field missing.</h3></span>
     </div>
+
     <div>
-      <label>Price*</label>
+      <label for="price">Price*</label>
       <input
+        id="price"
         name="price"
         type="number"
         placeholder="e.g. €150.000"
@@ -102,8 +113,9 @@
     </div>
     <div class="inputs-flex">
       <div class="size-input">
-        <label>Size*</label>
+        <label for="size">Size*</label>
         <input
+          id="size"
           name="size"
           type="text"
           placeholder="e.g. 60m2"
@@ -114,14 +126,15 @@
         <span v-if="showError('size')" class="error-text"><h3>Required field missing.</h3></span>
       </div>
       <div class="dropdown">
-        <label>Garage*</label>
+        <label for="hasGarage">Garage*</label>
         <select
+          id="hasGarage"
           name="hasGarage"
           v-model="formData.hasGarage"
           :class="{ required: showError('hasGarage') }"
           @change="clearErrorForHasGarage"
         >
-          <option value="" disabled>Select</option>
+          <option value="">Select</option>
           <option value="true">Yes</option>
           <option value="false">No</option>
         </select>
@@ -132,8 +145,9 @@
     </div>
     <div class="inputs-flex">
       <div>
-        <label>Bedrooms*</label>
+        <label for="bedrooms">Bedrooms*</label>
         <input
+          id="bedrooms"
           name="bedrooms"
           type="number"
           placeholder="Enter amount"
@@ -146,8 +160,9 @@
         >
       </div>
       <div>
-        <label>Bathrooms*</label>
+        <label for="bathrooms">Bathrooms*</label>
         <input
+          id="bathrooms"
           name="bathrooms"
           type="number"
           placeholder="Enter amount"
@@ -161,8 +176,9 @@
       </div>
     </div>
     <div>
-      <label>Construction year*</label>
+      <label for="constructionYear">Construction year*</label>
       <input
+        id="constructionYear"
         name="constructionYear"
         type="number"
         placeholder="e.g. 1990"
@@ -175,8 +191,9 @@
       >
     </div>
     <div>
-      <label>Description*</label>
+      <label for="description">Description*</label>
       <input
+        id="description"
         name="description"
         type="text"
         placeholder="Enter description"
@@ -222,7 +239,8 @@ export default {
         description: ''
       },
       errors: {},
-      isEditPage: false
+      isEditPage: false,
+      imagePreview: null
     }
   },
   created() {
@@ -265,9 +283,8 @@ export default {
       if (!this.formData.image) {
         this.errors.image = true
       }
-
-      if (!this.$refs.imageInput.checkValidity()) {
-        // Check the validity of the image input element, and if it's not valid, set an error flag for image
+      // Check the validity of the image input element, and if it's not valid, set an error flag for image
+      if (this.$refs.imageInput && !this.$refs.imageInput.checkValidity()) {
         this.errors.image = true
       }
       if (this.isFormValid()) {
@@ -282,8 +299,7 @@ export default {
             // If the form is in edit mode, update the existing property listing
             if (imageFile) {
               // If a new image is selected, upload it
-              const imageUploadResponse = await apiService.uploadImage(this.houseId, imageFile)
-              console.log('Image uploaded:', imageUploadResponse.data)
+              await apiService.uploadImage(this.houseId, imageFile)
             }
             response = await apiService.updateHouse(this.houseId, this.formData)
           } else {
@@ -309,8 +325,11 @@ export default {
     clearErrorForHasGarage() {
       this.clearError('hasGarage')
     },
+    showUploader() {
+      this.formData.image = null
+      this.imagePreview = null
+    },
     handleImageUpload() {
-      // Function to handle image upload
       const imageInput = this.$refs.imageInput
       const imageFile = imageInput.files[0]
 
@@ -318,8 +337,13 @@ export default {
         this.errors.image = true
       } else {
         this.errors.image = false
+        // Read the selected image and display it as a preview
+        const reader = new FileReader()
+        reader.onload = (e) => {
+          this.imagePreview = e.target.result
+        }
+        reader.readAsDataURL(imageFile)
       }
-
       this.formData.image = imageFile ? imageFile : null
     },
     isFormValid() {
@@ -348,15 +372,14 @@ export default {
           isValid = false
         }
       })
-
       return isValid
     },
+    // Function to check if an error should be displayed for a field
     showError(fieldName) {
-      // Function to check if an error should be displayed for a field
       return this.errors[fieldName]
     },
+    // Function to clear errors for a field
     clearError(fieldName) {
-      // Function to clear errors for a field
       this.errors[fieldName] = false
     }
   }
@@ -364,12 +387,20 @@ export default {
 </script>
 
 <style scoped>
+.uploaded-image-preview {
+  width: 140px;
+  height: 140px;
+  margin-top: 10px;
+  border-radius: 10px;
+  object-fit: cover;
+}
 label {
   font-size: 14px;
 }
 form {
   max-width: 450px;
 }
+
 input,
 select {
   width: 96%;
@@ -393,8 +424,8 @@ select:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 125px;
-  height: 125px;
+  width: 140px;
+  height: 140px;
   margin-top: 10px;
   margin-bottom: 10px;
   border: 2px dashed #4a4b4c;
@@ -454,8 +485,8 @@ input[type='file'] {
   margin-bottom: 15px;
 }
 .current-image img {
-  width: 170px;
-  height: 170px;
+  width: 140px;
+  height: 140px;
   object-fit: cover;
   border-radius: 10px;
   margin-top: 10px;
