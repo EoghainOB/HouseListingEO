@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="main">
-      <BackOverview />
+      <BackOverview linkText="Back to overview" />
       <div class="form-container">
         <div class="page-title"><h1>Create new listing</h1></div>
         <CreateEditForm buttonText="POST" />

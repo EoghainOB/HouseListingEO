@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="main">
-      <BackOverview />
+      <BackOverview linkText="Back to detail page" />
       <div class="form-container">
         <div class="page-title"><h1>Edit listing</h1></div>
         <CreateEditForm buttonText="SAVE" />

@@ -19,9 +19,7 @@
         />
       </div>
       <div class="return-text">
-        <!-- Conditional text based on the route -->
-        <h3 v-if="$route.path.startsWith('/house/edit')">Back to detail page</h3>
-        <h3 v-else>Back to overview</h3>
+        <h3>{{ linkText }}</h3>
       </div>
     </div>
   </div>
@@ -30,21 +28,22 @@
 <script>
 export default {
   name: 'BackOverview',
+  props: {
+    linkText: {
+      type: String
+    }
+  },
   methods: {
     handleClick() {
-      // Handle navigation based on the route
-      if (this.$route.path.startsWith('/house/edit')) {
-        window.history.back()
+      // Handle navigation based on the route name
+      if (this.$route.name === 'HouseEdit') {
+        this.$router.go(-1)
       } else {
         this.$router.push('/')
       }
     }
   },
   computed: {
-    isHouseDetail() {
-      // Check if the current route is the detail page
-      return this.$route.name === 'HouseDetail'
-    },
     isMobile() {
       return window.innerWidth <= 768
     }

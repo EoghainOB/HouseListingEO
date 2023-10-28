@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <BackOverview />
+    <BackOverview linkText="Back to overview" />
     <div>
       <div class="house-detail">
         <div v-if="house">
