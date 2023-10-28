@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     handleClick() {
-      // Handle navigation based on the route name
+      // Handle navigation based on the route
       if (this.$route.name === 'HouseEdit') {
         this.$router.go(-1)
       } else {
@@ -44,6 +44,10 @@ export default {
     }
   },
   computed: {
+    isHouseDetail() {
+      // Check if the current route is the detail page
+      return this.$route.name === 'HouseDetail'
+    },
     isMobile() {
       return window.innerWidth <= 768
     }
