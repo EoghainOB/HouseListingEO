@@ -33,7 +33,11 @@ const router = createRouter({
       name: 'HouseEdit',
       component: HouseEdit
     }
-  ]
+  ],
+  // Jump to top of page when navigating
+  scrollBehavior() {
+    return { top: 0 }
+  }
 })
 
 export default router
