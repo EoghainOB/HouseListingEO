@@ -66,6 +66,7 @@ export default {
   border-radius: 8px;
   padding: 15px 30px 15px 30px;
   margin: 20px;
+  cursor: pointer;
 }
 
 .delete-button {
