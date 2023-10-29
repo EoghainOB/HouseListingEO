@@ -73,11 +73,21 @@
 
     <div>
       <label>Upload picture (PNG or JPG)*</label>
-      <div class="current-image" v-if="formData.image && !imagePreview">
-        <img :src="formData.image" alt="Current Image" @click="showUploader" />
+      <div class="image-thumbnail" v-if="formData.image && !imagePreview">
+        <div class="clear-button" @click="showUploader">
+          <img src="@/assets/icons/ic_clear_white@3x.png" alt="Clear" />
+        </div>
+        <div class="current-image">
+          <img :src="formData.image" alt="Current Image" />
+        </div>
       </div>
-      <div class="current-image" v-if="imagePreview">
-        <img :src="imagePreview" alt="Image Preview" @click="showUploader" />
+      <div class="image-thumbnail" v-if="imagePreview">
+        <div class="clear-button" @click="showUploader">
+          <img src="@/assets/icons/ic_clear_white@3x.png" alt="Clear" />
+        </div>
+        <div class="current-image">
+          <img :src="imagePreview" alt="Image Preview" />
+        </div>
       </div>
 
       <div class="uploader" v-if="!formData.image && !imagePreview">
@@ -192,19 +202,20 @@
     </div>
     <div>
       <label for="description">Description*</label>
-      <input
+      <textarea
         id="description"
         name="description"
-        type="text"
         placeholder="Enter description"
         v-model="formData.description"
         :class="{ required: showError('description') }"
         @input="clearError('description')"
-      />
+        style="resize: none"
+      ></textarea>
       <span v-if="showError('description')" class="error-text"
         ><h3>Required field missing.</h3></span
       >
     </div>
+
     <div class="submit">
       <button class="post-button" type="submit">{{ buttonText }}</button>
     </div>
@@ -291,10 +302,8 @@ export default {
       if (this.isFormValid()) {
         // If the entire form is valid, proceed to handle form submission
         const imageFile = this.formData.image
-
         try {
           let response
-
           if (this.isEditPage) {
             // If the form is in edit mode, update the existing property listing
             if (imageFile) {
@@ -398,7 +407,8 @@ form {
 }
 
 input,
-select {
+select,
+textarea {
   width: 96%;
   background-color: #ffffff;
   height: 48px;
@@ -413,7 +423,12 @@ select {
 select {
   height: 50px;
 }
-select:focus {
+textarea {
+  height: 150px;
+  padding-top: 15px;
+}
+select:focus,
+textarea:focus {
   outline: none;
 }
 .file-upload {
@@ -486,7 +501,23 @@ input[type='file'] {
   object-fit: cover;
   border-radius: 10px;
   margin-top: 10px;
+  margin-right: 10px;
 }
+
+.clear-button {
+  position: relative;
+  left: -35px;
+  width: 40px;
+}
+.clear-button img {
+  width: 100%;
+}
+.image-thumbnail {
+  display: flex;
+  flex-direction: row-reverse;
+  width: fit-content;
+}
+
 @media only screen and (max-width: 768px) {
   input,
   select,

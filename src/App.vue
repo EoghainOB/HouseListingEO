@@ -58,7 +58,8 @@ label {
 h4,
 h5,
 p,
-input {
+input,
+textarea {
   font-family: 'Open Sans', sans-serif;
   text-decoration: none;
 }
