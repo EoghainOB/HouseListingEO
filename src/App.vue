@@ -1,19 +1,38 @@
 <template>
   <header>
-    <HeaderMenu />
+    <HeaderMenu :myProperties="myProperties" />
   </header>
   <router-view></router-view>
   <footer>
-    <FooterMenu />
+    <FooterMenu :myProperties="myProperties" />
   </footer>
 </template>
 
 <script>
 import HeaderMenu from '@/components/HeaderMenu.vue'
 import FooterMenu from '@/components/FooterMenu.vue'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  components: { HeaderMenu, FooterMenu }
+  components: { HeaderMenu, FooterMenu },
+  created() {
+    this.fetchHouses()
+  },
+  methods: {
+    ...mapActions(['fetchHouses'])
+  },
+  computed: {
+    ...mapGetters(['allHouses']),
+    myProperties() {
+      let sortedHouses = []
+
+      if (Array.isArray(this.allHouses)) {
+        const myHouses = this.allHouses.filter((house) => house.madeByMe)
+        sortedHouses = [...myHouses]
+      }
+      return sortedHouses
+    }
+  }
 }
 </script>
 
@@ -38,7 +57,7 @@ body {
 
 .main {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: auto;
 }
 

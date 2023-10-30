@@ -1,6 +1,8 @@
 <template>
   <div class="sub-menu">
-    <div><h1>Houses</h1></div>
+    <div>
+      <h1>{{ title }}</h1>
+    </div>
     <!-- Link to create a new house (desktop) -->
     <router-link to="/house/create">
       <div class="create-button-desktop">
@@ -20,7 +22,10 @@
 
 <script>
 export default {
-  name: 'CreateMenu'
+  name: 'CreateMenu',
+  props: {
+    title: String
+  }
 }
 </script>
 

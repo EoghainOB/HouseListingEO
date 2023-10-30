@@ -17,6 +17,17 @@
             >
               Houses
             </router-link>
+            <!-- Link to the My Listings page (with dynamic active class) -->
+            <router-link
+              v-if="myProperties.length"
+              to="/mylistings"
+              class="nav-link"
+              :class="{
+                'active-link': $route.path.startsWith('/mylistings')
+              }"
+            >
+              My Listings
+            </router-link>
             <!-- Link to the About page (with dynamic active class) -->
             <router-link
               to="/about"
@@ -36,7 +47,10 @@
 
 <script>
 export default {
-  name: 'HeaderMenu'
+  name: 'HeaderMenu',
+  props: {
+    myProperties: Object
+  }
 }
 </script>
 
@@ -47,7 +61,7 @@ export default {
 }
 .header-menu {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: auto;
 }
 .header-logo img {

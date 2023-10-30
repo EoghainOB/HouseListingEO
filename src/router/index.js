@@ -4,6 +4,7 @@ import AboutUs from '@/views/AboutUs.vue'
 import HouseDetail from '@/views/HouseDetail.vue'
 import HouseCreate from '@/views/HouseCreate.vue'
 import HouseEdit from '@/views/HouseEdit.vue'
+import MyListings from '@/views/MyListings.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
       path: '/house/edit',
       name: 'HouseEdit',
       component: HouseEdit
+    },
+    {
+      path: '/mylistings',
+      name: 'MyListings',
+      component: MyListings
     }
   ],
   // Jump to top of page when navigating

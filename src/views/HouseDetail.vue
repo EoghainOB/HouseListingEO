@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <BackOverview linkText="Back to overview" />
-    <div>
+    <div class="house-detail-block">
       <div class="house-detail">
         <div v-if="house">
           <div class="home-image">
@@ -76,6 +76,7 @@
           </div>
         </div>
       </div>
+      <RecommendedHouses :houseId="house.id" v-if="house" />
     </div>
   </div>
 </template>
@@ -84,14 +85,19 @@
 import apiService from '@/services/apiService'
 import BackOverview from '@/components/BackNavigation.vue'
 import EditDeleteBtns from '@/components/EditDeleteButtons.vue'
+import RecommendedHouses from '@/components/RecommendedHouses.vue'
 
 export default {
   name: 'HouseDetail',
-  components: { BackOverview, EditDeleteBtns },
+  components: { BackOverview, EditDeleteBtns, RecommendedHouses },
   data() {
     return {
       house: null
     }
+  },
+  mounted() {
+    const houseId = this.$route.params.houseId
+    this.fetchHouseDetails(houseId)
   },
   created() {
     // Get the house ID from the route parameters
@@ -115,6 +121,12 @@ export default {
 </script>
 
 <style scoped>
+.house-detail-block {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
 .house-detail {
   display: flex;
   flex-flow: row wrap;
@@ -124,7 +136,7 @@ export default {
   margin-left: 15px;
   margin-right: 15px;
   max-width: 812px;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
   box-shadow: 0px 0px 14px -5px rgba(0, 0, 0, 0.14);
 }
 .listing-details {
@@ -201,6 +213,12 @@ p {
 }
 
 @media only screen and (max-width: 768px) {
+  .house-detail-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
   .house-detail {
     margin-top: 0px;
     margin-left: 0px;
@@ -259,6 +277,12 @@ p {
     width: 100%;
     height: auto;
     border-radius: 0px;
+  }
+}
+
+@media only screen and (max-width: 842px) {
+  .house-detail-block {
+    flex-wrap: wrap;
   }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <CreateMenu title="Houses" />
+    <CreateMenu title="My Listings" />
     <SearchFilter v-model="searchQuery" @filterChanged="updateFilter" />
     <div>
       <ul class="house-listing">
@@ -39,7 +39,7 @@ import SearchFilter from '@/components/SearchFilter.vue'
 import HouseCard from '@/components/HouseCard.vue'
 
 export default {
-  name: 'HouseList',
+  name: 'MyListings',
   components: { CreateMenu, SearchFilter, HouseCard },
   data() {
     return {
@@ -71,7 +71,10 @@ export default {
 
       if (Array.isArray(this.allHouses)) {
         // Create a copy of property listings for sorting
-        sortedHouses = [...this.allHouses]
+        const myHouses = this.allHouses.filter((house) => house.madeByMe)
+
+        // Create a copy of the filtered property listings for sorting
+        sortedHouses = [...myHouses]
 
         // Sort property listings
         if (this.currentFilter === 'Price') {

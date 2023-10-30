@@ -15,6 +15,19 @@
             />
           </router-link>
         </div>
+        <div class="nav-icons" v-if="myProperties.length">
+          <!-- Link to the My Listings page with dynamic icon -->
+          <router-link to="/mylistings" class="nav-link">
+            <img
+              :src="
+                $route.path.startsWith('/mylistings')
+                  ? '/src/assets/icons/ic_mobile_navigarion_listings_active@3x.svg'
+                  : '/src/assets/icons/ic_mobile_navigarion_listings@3x.svg'
+              "
+              alt="My Listings"
+            />
+          </router-link>
+        </div>
         <div class="nav-icons">
           <!-- Link to the About page with dynamic icon -->
           <router-link to="/about" class="nav-link">
@@ -35,7 +48,10 @@
 
 <script>
 export default {
-  name: 'FooterMenu'
+  name: 'FooterMenu',
+  props: {
+    myProperties: Object
+  }
 }
 </script>
 
