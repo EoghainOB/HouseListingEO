@@ -125,6 +125,9 @@ h4 {
     object-fit: cover;
     border-radius: 10px;
   }
+  h2 {
+    font-size: 14px;
+  }
   h4 {
     font-size: 12px;
   }
