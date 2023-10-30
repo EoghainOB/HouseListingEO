@@ -96,21 +96,19 @@
       </div>
 
       <!-- Image uploader to show only if there is no current image or preview -->
-      <div class="uploader" v-if="!formData.image && !imagePreview">
+      <label for="imageInput" class="uploader" v-if="!formData.image && !imagePreview">
         <div class="file-upload">
-          <label for="imageInput">
-            <img src="@/assets/icons/ic_upload@3x.png" alt="Upload Image" />
-            <input
-              id="imageInput"
-              name="image"
-              type="file"
-              @change="handleImageUpload"
-              ref="imageInput"
-              :class="{ required: errors.image }"
-            />
-          </label>
+          <img src="@/assets/icons/ic_upload@3x.png" alt="Upload Image" />
+          <input
+            id="imageInput"
+            name="image"
+            type="file"
+            @change="handleImageUpload"
+            ref="imageInput"
+            :class="{ required: errors.image }"
+          />
         </div>
-      </div>
+      </label>
       <span v-if="showError('image')" class="error-text"><h3>Required field missing.</h3></span>
     </div>
 
@@ -451,6 +449,7 @@ textarea:focus {
   margin-top: 10px;
   margin-bottom: 10px;
   border: 2px dashed #4a4b4c;
+  cursor: pointer;
 }
 .file-upload img {
   height: 30px;
