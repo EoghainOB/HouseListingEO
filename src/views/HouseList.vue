@@ -1,14 +1,14 @@
 <template>
   <div class="main">
-    <CreateMenu title="Houses" />
+    <CreateMenu :title="menuTitle" />
     <SearchFilter v-model="searchQuery" @filterChanged="updateFilter" />
     <div>
+      <!-- Add a button or a link to switch between full list and "madeByMe" list -->
       <ul class="house-listing">
         <!-- Display number of results found or display message if no results found -->
         <div class="results-found" v-if="searchQuery.length > 0">
           <h2 v-if="filteredHouses.length > 0">
-            {{ filteredHouses.length }} result<span v-if="filteredHouses.length !== 1">s</span>
-            found
+            {{ filteredHouses.length }} result<span v-if="filteredHouses.length !== 1">s</span>found
           </h2>
         </div>
         <div class="house-list-empty" v-if="filteredHouses < 1 && searchQuery.length > 0">
@@ -66,35 +66,39 @@ export default {
   computed: {
     // Map Vuex getters to access property listings
     ...mapGetters(['allHouses']),
+    myListings() {
+      return this.allHouses.filter((house) => house.madeByMe)
+    },
+    showMyListings() {
+      return this.$route.path.startsWith('/mylistings')
+    },
+    menuTitle() {
+      return this.$route.path.startsWith('/mylistings') ? 'My Listings' : 'Houses'
+    },
     filteredHouses() {
-      let sortedHouses = []
+      let sortedHouses = this.showMyListings ? [...this.myListings] : [...this.allHouses]
 
-      if (Array.isArray(this.allHouses)) {
-        // Create a copy of property listings for sorting
-        sortedHouses = [...this.allHouses]
+      // Sort property listings
+      if (this.currentFilter === 'Price') {
+        sortedHouses.sort((a, b) => a.price - b.price)
+      } else if (this.currentFilter === 'Size') {
+        sortedHouses.sort((a, b) => a.size - b.size)
+      }
 
-        // Sort property listings
-        if (this.currentFilter === 'Price') {
-          sortedHouses.sort((a, b) => a.price - b.price)
-        } else if (this.currentFilter === 'Size') {
-          sortedHouses.sort((a, b) => a.size - b.size)
-        }
-
-        // Filter property listings based on search query
-        if (this.searchQuery) {
-          const query = this.searchQuery.toLowerCase()
-          sortedHouses = sortedHouses.filter((house) => {
-            const location = house.location
-            return (
-              (location.street + location.houseNumber + location.houseNumberAddition)
-                .toLowerCase()
-                .includes(query) ||
-              house.price.toString().includes(query) ||
-              (location.zip + ', ' + location.city).toLowerCase().includes(query) ||
-              house.size.toString().includes(query)
-            )
-          })
-        }
+      // Filter property listings based on search query
+      if (this.searchQuery) {
+        const query = this.searchQuery.toLowerCase()
+        sortedHouses = sortedHouses.filter((house) => {
+          const location = house.location
+          return (
+            (location.street + location.houseNumber + location.houseNumberAddition)
+              .toLowerCase()
+              .includes(query) ||
+            house.price.toString().includes(query) ||
+            (location.zip + ', ' + location.city).toLowerCase().includes(query) ||
+            house.size.toString().includes(query)
+          )
+        })
       }
       return sortedHouses
     }
