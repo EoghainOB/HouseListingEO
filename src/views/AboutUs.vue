@@ -2,7 +2,7 @@
   <div class="main">
     <div class="about-page">
       <div class="section-title"><h1>About</h1></div>
-      <div class="dev-about"><h2>About DTT Real Estate</h2></div>
+      <div class="dev-about"><h1>About DTT Real Estate</h1></div>
       <div>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut quis voluptatem, corporis
@@ -57,9 +57,6 @@ p {
     text-align: center;
     padding-top: 22px;
     margin: auto;
-  }
-  .section-title h1 {
-    font-size: 18px;
   }
   .dev-about {
     display: flex;

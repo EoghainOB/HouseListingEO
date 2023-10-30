@@ -11,27 +11,13 @@
 <script>
 import HeaderMenu from '@/components/HeaderMenu.vue'
 import FooterMenu from '@/components/FooterMenu.vue'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   components: { HeaderMenu, FooterMenu },
-  created() {
-    this.fetchHouses()
-  },
-  methods: {
-    ...mapActions(['fetchHouses'])
-  },
+  // Retrieve the list of myProperties to pass to HeaderMenu and FooterMenu
   computed: {
-    ...mapGetters(['allHouses']),
-    myProperties() {
-      let sortedHouses = []
-
-      if (Array.isArray(this.allHouses)) {
-        const myHouses = this.allHouses.filter((house) => house.madeByMe)
-        sortedHouses = [...myHouses]
-      }
-      return sortedHouses
-    }
+    ...mapGetters(['myProperties'])
   }
 }
 </script>

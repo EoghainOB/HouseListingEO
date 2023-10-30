@@ -3,7 +3,6 @@
     <CreateMenu :title="menuTitle" />
     <SearchFilter v-model="searchQuery" @filterChanged="updateFilter" />
     <div>
-      <!-- Add a button or a link to switch between full list and "madeByMe" list -->
       <ul class="house-listing">
         <!-- Display number of results found or display message if no results found -->
         <div class="results-found" v-if="searchQuery.length > 0">
@@ -65,18 +64,17 @@ export default {
   },
   computed: {
     // Map Vuex getters to access property listings
-    ...mapGetters(['allHouses']),
-    myListings() {
-      return this.allHouses.filter((house) => house.madeByMe)
-    },
-    showMyListings() {
+    ...mapGetters(['allHouses', 'myProperties']),
+    // Check that the current route is /myListings
+    myListingsPage() {
       return this.$route.path.startsWith('/mylistings')
     },
+    // Conditional text for the CreateMenu based on route
     menuTitle() {
       return this.$route.path.startsWith('/mylistings') ? 'My Listings' : 'Houses'
     },
     filteredHouses() {
-      let sortedHouses = this.showMyListings ? [...this.myListings] : [...this.allHouses]
+      let sortedHouses = this.myListingsPage ? [...this.myProperties] : [...this.allHouses]
 
       // Sort property listings
       if (this.currentFilter === 'Price') {

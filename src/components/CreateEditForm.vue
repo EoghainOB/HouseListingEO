@@ -71,9 +71,12 @@
       <span v-if="showError('city')" class="error-text"><h3>Required field missing.</h3></span>
     </div>
 
+    <!-- Upload photo input field -->
     <div>
       <label>Upload picture (PNG or JPG)*</label>
+      <!-- Check if there is a current image and no preview then show thumbnail -->
       <div class="image-thumbnail" v-if="formData.image && !imagePreview">
+        <!-- Click the clear icon to show the uploader -->
         <div class="clear-button" @click="showUploader">
           <img src="@/assets/icons/ic_clear_white@3x.png" alt="Clear" />
         </div>
@@ -81,7 +84,9 @@
           <img :src="formData.image" alt="Current Image" />
         </div>
       </div>
+      <!-- Check if there is a preview then show thumbnail -->
       <div class="image-thumbnail" v-if="imagePreview">
+        <!-- Click the clear icon to show the uploader -->
         <div class="clear-button" @click="showUploader">
           <img src="@/assets/icons/ic_clear_white@3x.png" alt="Clear" />
         </div>
@@ -90,6 +95,7 @@
         </div>
       </div>
 
+      <!-- Image uploader to show only if there is no current image or preview -->
       <div class="uploader" v-if="!formData.image && !imagePreview">
         <div class="file-upload">
           <label for="imageInput">
@@ -331,6 +337,7 @@ export default {
     clearErrorForHasGarage() {
       this.clearError('hasGarage')
     },
+    // Shows the uploader if there is no current image or preview by setting both to null
     showUploader() {
       this.formData.image = null
       this.imagePreview = null
@@ -343,11 +350,15 @@ export default {
         this.errors.image = true
       } else {
         this.errors.image = false
+        // Create a FileReader to read the selected image
         const reader = new FileReader()
         reader.onload = (e) => {
+          // Set the imagePreview property to the URL of the loaded image
           this.imagePreview = e.target.result
         }
+        // Read the selected image file as a Data URL
         reader.readAsDataURL(imageFile)
+        // Assign the selected image file to a formData property
         this.formData.image = imageFile
       }
     },

@@ -19,6 +19,7 @@
         />
       </div>
       <div class="return-text">
+        <!-- Receives the linkText as prop -->
         <h3>{{ linkText }}</h3>
       </div>
     </div>
