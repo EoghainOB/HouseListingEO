@@ -61,8 +61,8 @@ export default {
 
 @media only screen and (max-width: 768px) {
   .sub-menu {
-    margin-top: 20px;
-    height: 50px;
+    margin-top: 0px;
+    height: 30px;
     text-align: center;
     justify-content: center;
   }

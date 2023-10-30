@@ -55,7 +55,7 @@ p {
   .section-title {
     display: block;
     text-align: center;
-    padding-top: 20px;
+    padding-top: 22px;
     margin: auto;
   }
   .section-title h1 {
