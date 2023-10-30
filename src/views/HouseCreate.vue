@@ -1,35 +1,33 @@
 <template>
-  <BackOverview />
-  <div class="formContainer">
-    <div class="pageTitle"><h1>Create new listing</h1></div>
-    <InputForm buttonText="POST" />
+  <div class="wrapper">
+    <div class="main">
+      <BackOverview linkText="Back to overview" />
+      <div class="form-container">
+        <div class="page-title"><h1>Create new listing</h1></div>
+        <CreateEditForm buttonText="POST" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import BackOverview from '@/components/backOverview.vue'
-import InputForm from '@/components/inputForm.vue'
+import BackOverview from '@/components/BackNavigation.vue'
+import CreateEditForm from '@/components/CreateEditForm.vue'
 
 export default {
   name: 'HouseCreate',
-  components: { BackOverview, InputForm }
+  components: { BackOverview, CreateEditForm }
 }
 </script>
 
 <style scoped>
-.formContainer {
-  background-image: url('@/components/images/img_background@3x.png');
-  background-repeat: no-repeat;
-  background-size: 100%;
+.form-container {
   padding-left: 15px;
   padding-right: 15px;
   padding-bottom: 70px;
 }
 @media only screen and (max-width: 768px) {
-  .formContainer {
-    background-position: center bottom;
-  }
-  .pageTitle {
+  .page-title {
     padding-top: 20px;
     height: 50px;
     text-align: center;

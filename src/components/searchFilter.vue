@@ -1,10 +1,10 @@
 <template>
-  <div class="filterMenu">
+  <div class="filter-menu">
     <!-- Input field for searching houses -->
-    <div class="inputForm">
-      <form class="mainSearch">
-        <div><img src="src/components/icons/ic_search@3x.png" alt="search" /></div>
-        <div class="inputField">
+    <div class="input-form">
+      <form class="main-search">
+        <div><img src="src/assets/icons/ic_search@3x.png" alt="search" /></div>
+        <div class="input-field">
           <input
             v-model="searchQuery"
             name="searchHouses"
@@ -13,22 +13,22 @@
           />
         </div>
         <!-- Clear search icon (visible when search query is not empty) -->
-        <div v-if="searchQuery" @click="clearSearchQuery()" class="clearIcon">
-          <img src="src/components/icons/ic_clear@3x.png" alt="clear" />
+        <div v-if="searchQuery" @click="clearSearchQuery()" class="clear-icon">
+          <img src="src/assets/icons/ic_clear@3x.png" alt="clear" />
         </div>
       </form>
     </div>
     <!-- Filter buttons for sorting houses by price and size -->
-    <div class="filterButtons">
+    <div class="filter-buttons">
       <div
-        class="priceButton"
+        class="price-button"
         :class="{ active: activeFilter === 'Price' }"
         @click="changeFilter('Price')"
       >
         Price
       </div>
       <div
-        class="sizeButton"
+        class="size-button"
         :class="{ active: activeFilter === 'Size' }"
         @click="changeFilter('Size')"
       >
@@ -70,7 +70,7 @@ export default {
 </script>
 
 <style>
-.filterMenu {
+.filter-menu {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -78,14 +78,14 @@ export default {
   padding-bottom: 10px;
   border-radius: 10px;
 }
-.inputField {
+.input-field {
   width: 100%;
 }
-.mainSearch {
+.main-search {
   display: flex;
   width: 100%;
 }
-.inputForm {
+.input-form {
   background-color: #e8e8e8;
   width: 35%;
   border-radius: 5px;
@@ -93,11 +93,11 @@ export default {
 input:focus-visible {
   outline: none;
 }
-.inputForm img {
+.input-form img {
   height: 20px;
   padding: 15px;
 }
-.inputForm input {
+.input-form input {
   width: 95%;
   background-color: #e8e8e8;
   height: 48px;
@@ -105,11 +105,11 @@ input:focus-visible {
   font-size: 18px;
   font-weight: 400;
 }
-.filterButtons {
+.filter-buttons {
   display: flex;
 }
-.priceButton,
-.sizeButton {
+.price-button,
+.size-button {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   font-size: 18px;
@@ -118,47 +118,47 @@ input:focus-visible {
   cursor: pointer;
   background-color: #c3c3c3;
 }
-.priceButton {
+.price-button {
   border-radius: 8px 0px 0px 8px;
 }
-.sizeButton {
+.size-button {
   border-radius: 0px 8px 8px 0px;
 }
-.priceButton.active,
-.sizeButton.active {
+.price-button.active,
+.size-button.active {
   background-color: #eb5440;
 }
-.filterMenu {
+.filter-menu {
   padding-left: 15px;
   padding-right: 15px;
 }
 @media only screen and (max-width: 768px) {
-  .filterButtons {
+  .filter-buttons {
     width: 100%;
   }
-  .priceButton,
-  .sizeButton {
+  .price-button,
+  .size-button {
     font-size: 12px;
     padding: 12px 70px 12px 70px;
     width: 50%;
     text-align: center;
   }
-  .inputForm {
+  .input-form {
     width: 100%;
     margin-bottom: 10px;
   }
-  .inputForm input {
+  .input-form input {
     height: 32px;
     font-size: 14px;
   }
-  .mainSearch {
+  .main-search {
     height: 38px;
   }
-  .inputForm img {
+  .input-form img {
     height: 18px;
     padding: 10px;
   }
-  .clearIcon img {
+  .clear-icon img {
     height: 18px;
     width: 18px;
   }

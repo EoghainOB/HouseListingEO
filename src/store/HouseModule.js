@@ -1,4 +1,4 @@
-import apiService from '../services/apiService.js'
+import apiService from '@/services/apiService.js'
 
 const houseModule = {
   state: {
@@ -21,8 +21,9 @@ const houseModule = {
     }
   },
   getters: {
-    // Getter to retrieve all the houses from the state
-    allHouses: (state) => state.houses
+    // Getter to retrieve all the houses and filtered houses from the state
+    allHouses: (state) => state.houses,
+    myProperties: (state) => state.houses.filter((house) => house.madeByMe)
   }
 }
 

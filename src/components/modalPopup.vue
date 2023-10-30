@@ -5,8 +5,8 @@
       Are you sure you want to delete this listing?<br />
       This action can not be undone
     </p>
-    <div class="deleteButton" @click="deleteHouse">YES, DELETE</div>
-    <div class="goBackButton" @click="closeModal">GO BACK</div>
+    <div class="delete-button" @click="deleteHouse">YES, DELETE</div>
+    <div class="go-back-button" @click="closeModal">GO BACK</div>
   </div>
 </template>
 
@@ -57,8 +57,8 @@ export default {
   margin: auto;
 }
 
-.goBackButton,
-.deleteButton {
+.go-back-button,
+.delete-button {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   font-size: 18px;
@@ -66,18 +66,19 @@ export default {
   border-radius: 8px;
   padding: 15px 30px 15px 30px;
   margin: 20px;
+  cursor: pointer;
 }
 
-.deleteButton {
+.delete-button {
   background-color: #eb5440;
 }
 
-.goBackButton {
+.go-back-button {
   background-color: #4a4b4c;
 }
 @media only screen and (max-width: 768px) {
-  .goBackButton,
-  .deleteButton {
+  .go-back-button,
+  .delete-button {
     font-size: 12px;
     padding: 12px 30px 12px 30px;
   }

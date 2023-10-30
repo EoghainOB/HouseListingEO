@@ -12,16 +12,15 @@
         <img
           :src="
             isHouseDetail && isMobile
-              ? '/src/components/icons/ic_back_white@3x.png'
-              : '/src/components/icons/ic_back_grey@3x.png'
+              ? '/src/assets/icons/ic_back_white@3x.png'
+              : '/src/assets/icons/ic_back_grey@3x.png'
           "
           alt="Return"
         />
       </div>
-      <div class="returnText">
-        <!-- Conditional text based on the route -->
-        <h3 v-if="$route.path.startsWith('/house/edit')">Back to detail page</h3>
-        <h3 v-else>Back to overview</h3>
+      <div class="return-text">
+        <!-- Receives the linkText as prop -->
+        <h3>{{ linkText }}</h3>
       </div>
     </div>
   </div>
@@ -30,11 +29,16 @@
 <script>
 export default {
   name: 'BackOverview',
+  props: {
+    linkText: {
+      type: String
+    }
+  },
   methods: {
     handleClick() {
       // Handle navigation based on the route
-      if (this.$route.path.startsWith('/house/edit')) {
-        window.history.back()
+      if (this.$route.name === 'HouseEdit') {
+        this.$router.go(-1)
       } else {
         this.$router.push('/')
       }
@@ -59,7 +63,8 @@ export default {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  padding-right: 8px;
+  padding-left: 15px;
+  padding-right: 15px;
   cursor: pointer;
 }
 .return img {
@@ -78,9 +83,9 @@ h3 {
   .return {
     position: absolute;
     padding-top: 35px;
-    margin-left: 15px;
+    margin-left: 0px;
   }
-  .returnText {
+  .return-text {
     display: none;
   }
 }

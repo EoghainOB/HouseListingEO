@@ -1,9 +1,11 @@
 <template>
   <form @submit.prevent="submitForm" enctype="multipart/form-data">
     <!-- Input fields for address information -->
+
     <div>
-      <label>Street name*</label>
+      <label for="streetName">Street name*</label>
       <input
+        id="streetName"
         name="streetName"
         type="text"
         placeholder="Enter the street name"
@@ -15,10 +17,11 @@
         ><h3>Required field missing.</h3></span
       >
     </div>
-    <div class="inputsFlex">
+    <div class="inputs-flex">
       <div>
-        <label>House number*</label>
+        <label for="houseNumber">House number*</label>
         <input
+          id="houseNumber"
           name="houseNumber"
           type="number"
           placeholder="Enter house number"
@@ -31,8 +34,9 @@
         >
       </div>
       <div>
-        <label>Addition (optional)</label>
+        <label for="numberAddition">Addition (optional)</label>
         <input
+          id="numberAddition"
           name="numberAddition"
           type="text"
           placeholder="e.g. A"
@@ -41,8 +45,9 @@
       </div>
     </div>
     <div>
-      <label>Postal code*</label>
+      <label for="zip">Postal code*</label>
       <input
+        id="zip"
         name="zip"
         type="text"
         placeholder="e.g. 1000 AA"
@@ -53,8 +58,9 @@
       <span v-if="showError('zip')" class="error-text"><h3>Required field missing.</h3></span>
     </div>
     <div>
-      <label>City*</label>
+      <label for="city">City*</label>
       <input
+        id="city"
         name="city"
         type="text"
         placeholder="e.g. Utrecht"
@@ -64,26 +70,54 @@
       />
       <span v-if="showError('city')" class="error-text"><h3>Required field missing.</h3></span>
     </div>
+
+    <!-- Upload photo input field -->
     <div>
-      <!-- If in edit mode, display the current image -->
-      <div v-if="isEditPage" class="currentImage">
-        <label>Current Image*</label>
-        <div>
-          <img v-if="formData.image" :src="formData.image" alt="Current Image" />
+      <label>Upload picture (PNG or JPG)*</label>
+      <!-- Check if there is a current image and no preview then show thumbnail -->
+      <div class="image-thumbnail" v-if="formData.image && !imagePreview">
+        <!-- Click the clear icon to show the uploader -->
+        <div class="clear-button" @click="showUploader">
+          <img src="@/assets/icons/ic_clear_white@3x.png" alt="Clear" />
+        </div>
+        <div class="current-image">
+          <img :src="formData.image" alt="Current Image" />
         </div>
       </div>
-      <label>Upload picture (PNG or JPG)*</label>
-      <input
-        name="image"
-        type="file"
-        @change="handleImageUpload"
-        ref="imageInput"
-        :class="{ required: errors.image }"
-      />
+      <!-- Check if there is a preview then show thumbnail -->
+      <div class="image-thumbnail" v-if="imagePreview">
+        <!-- Click the clear icon to show the uploader -->
+        <div class="clear-button" @click="showUploader">
+          <img src="@/assets/icons/ic_clear_white@3x.png" alt="Clear" />
+        </div>
+        <div class="current-image">
+          <img :src="imagePreview" alt="Image Preview" />
+        </div>
+      </div>
+
+      <!-- Image uploader to show only if there is no current image or preview -->
+      <div class="uploader" v-if="!formData.image && !imagePreview">
+        <div class="file-upload">
+          <label for="imageInput">
+            <img src="@/assets/icons/ic_upload@3x.png" alt="Upload Image" />
+            <input
+              id="imageInput"
+              name="image"
+              type="file"
+              @change="handleImageUpload"
+              ref="imageInput"
+              :class="{ required: errors.image }"
+            />
+          </label>
+        </div>
+      </div>
+      <span v-if="showError('image')" class="error-text"><h3>Required field missing.</h3></span>
     </div>
+
     <div>
-      <label>Price*</label>
+      <label for="price">Price*</label>
       <input
+        id="price"
         name="price"
         type="number"
         placeholder="e.g. €150.000"
@@ -93,10 +127,11 @@
       />
       <span v-if="showError('price')" class="error-text"><h3>Required field missing.</h3></span>
     </div>
-    <div class="inputsFlex">
-      <div class="sizeInput">
-        <label>Size*</label>
+    <div class="inputs-flex">
+      <div class="size-input">
+        <label for="size">Size*</label>
         <input
+          id="size"
           name="size"
           type="text"
           placeholder="e.g. 60m2"
@@ -107,14 +142,15 @@
         <span v-if="showError('size')" class="error-text"><h3>Required field missing.</h3></span>
       </div>
       <div class="dropdown">
-        <label>Garage*</label>
+        <label for="hasGarage">Garage*</label>
         <select
+          id="hasGarage"
           name="hasGarage"
           v-model="formData.hasGarage"
           :class="{ required: showError('hasGarage') }"
           @change="clearErrorForHasGarage"
         >
-          <option value="" disabled>Select</option>
+          <option value="">Select</option>
           <option value="true">Yes</option>
           <option value="false">No</option>
         </select>
@@ -123,10 +159,11 @@
         >
       </div>
     </div>
-    <div class="inputsFlex">
+    <div class="inputs-flex">
       <div>
-        <label>Bedrooms*</label>
+        <label for="bedrooms">Bedrooms*</label>
         <input
+          id="bedrooms"
           name="bedrooms"
           type="number"
           placeholder="Enter amount"
@@ -139,8 +176,9 @@
         >
       </div>
       <div>
-        <label>Bathrooms*</label>
+        <label for="bathrooms">Bathrooms*</label>
         <input
+          id="bathrooms"
           name="bathrooms"
           type="number"
           placeholder="Enter amount"
@@ -154,8 +192,9 @@
       </div>
     </div>
     <div>
-      <label>Construction year*</label>
+      <label for="constructionYear">Construction year*</label>
       <input
+        id="constructionYear"
         name="constructionYear"
         type="number"
         placeholder="e.g. 1990"
@@ -168,21 +207,23 @@
       >
     </div>
     <div>
-      <label>Description*</label>
-      <input
+      <label for="description">Description*</label>
+      <textarea
+        id="description"
         name="description"
-        type="text"
         placeholder="Enter description"
         v-model="formData.description"
         :class="{ required: showError('description') }"
         @input="clearError('description')"
-      />
+        style="resize: none"
+      ></textarea>
       <span v-if="showError('description')" class="error-text"
         ><h3>Required field missing.</h3></span
       >
     </div>
+
     <div class="submit">
-      <button class="postButton" type="submit">{{ buttonText }}</button>
+      <button class="post-button" type="submit">{{ buttonText }}</button>
     </div>
   </form>
 </template>
@@ -191,7 +232,7 @@
 import apiService from '@/services/apiService'
 
 export default {
-  name: 'InputForm',
+  name: 'CreateEditForm',
   props: {
     buttonText: {
       type: String
@@ -212,10 +253,12 @@ export default {
         city: '',
         constructionYear: null,
         hasGarage: '',
-        description: ''
+        description: '',
+        image: ''
       },
       errors: {},
-      isEditPage: false
+      isEditPage: false,
+      imagePreview: null
     }
   },
   created() {
@@ -255,46 +298,36 @@ export default {
       // Clear any previous error related to image
       this.clearError('image')
 
-      if (!this.formData.image) {
-        this.errors.image = true
-      }
-
-      if (!this.$refs.imageInput.checkValidity()) {
-        // Check the validity of the image input element, and if it's not valid, set an error flag for image
+      // Check the validity of the image input element, and if it's not valid, set an error flag for image
+      if (
+        !this.formData.image ||
+        (this.$refs.imageInput && !this.$refs.imageInput.checkValidity())
+      ) {
         this.errors.image = true
       }
       if (this.isFormValid()) {
         // If the entire form is valid, proceed to handle form submission
-        const imageInput = this.$refs.imageInput
-        const imageFile = imageInput.files[0]
-
+        const imageFile = this.formData.image
         try {
           let response
-
           if (this.isEditPage) {
             // If the form is in edit mode, update the existing property listing
             if (imageFile) {
               // If a new image is selected, upload it
-              const imageUploadResponse = await apiService.uploadImage(this.houseId, imageFile)
-              console.log('Image uploaded:', imageUploadResponse.data)
+              await apiService.uploadImage(this.houseId, imageFile)
             }
             response = await apiService.updateHouse(this.houseId, this.formData)
+            this.$router.push(`/house/${this.houseId}`)
           } else {
             // If the form is not in edit mode, create a new property listing
             if (imageFile) {
               response = await apiService.createHouse(this.formData)
               const houseId = response.data.id
-              const imageUploadResponse = await apiService.uploadImage(houseId, imageFile)
-              console.log('Image uploaded:', imageUploadResponse.data)
+              await apiService.uploadImage(houseId, imageFile)
               this.$router.push(`/house/${houseId}`)
             } else {
               console.error('Image is required for creating a new house listing')
             }
-          }
-
-          if (this.isEditPage) {
-            // If it's an edit page, redirect to the updated property details page
-            this.$router.push(`/house/${this.houseId}`)
           }
         } catch (error) {
           console.error('Error processing form:', error)
@@ -304,17 +337,29 @@ export default {
     clearErrorForHasGarage() {
       this.clearError('hasGarage')
     },
+    // Shows the uploader if there is no current image or preview by setting both to null
+    showUploader() {
+      this.formData.image = null
+      this.imagePreview = null
+    },
     handleImageUpload() {
-      // Function to handle image upload
       const imageInput = this.$refs.imageInput
       const imageFile = imageInput.files[0]
 
-      this.formData.image = imageFile ? imageFile : null
-
-      if (!this.formData.image) {
+      if (!imageFile) {
         this.errors.image = true
       } else {
         this.errors.image = false
+        // Create a FileReader to read the selected image
+        const reader = new FileReader()
+        reader.onload = (e) => {
+          // Set the imagePreview property to the URL of the loaded image
+          this.imagePreview = e.target.result
+        }
+        // Read the selected image file as a Data URL
+        reader.readAsDataURL(imageFile)
+        // Assign the selected image file to a formData property
+        this.formData.image = imageFile
       }
     },
     isFormValid() {
@@ -343,15 +388,14 @@ export default {
           isValid = false
         }
       })
-
       return isValid
     },
+    // Function to check if an error should be displayed for a field
     showError(fieldName) {
-      // Function to check if an error should be displayed for a field
       return this.errors[fieldName]
     },
+    // Function to clear errors for a field
     clearError(fieldName) {
-      // Function to clear errors for a field
       this.errors[fieldName] = false
     }
   }
@@ -359,14 +403,23 @@ export default {
 </script>
 
 <style scoped>
+.uploaded-image-preview {
+  width: 140px;
+  height: 140px;
+  margin-top: 10px;
+  border-radius: 10px;
+  object-fit: cover;
+}
 label {
   font-size: 14px;
 }
 form {
   max-width: 450px;
 }
+
 input,
-select {
+select,
+textarea {
   width: 96%;
   background-color: #ffffff;
   height: 48px;
@@ -381,27 +434,48 @@ select {
 select {
   height: 50px;
 }
-select:focus {
+textarea {
+  height: 150px;
+  padding-top: 15px;
+}
+select:focus,
+textarea:focus {
   outline: none;
 }
-.inputsFlex {
+.file-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 140px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 2px dashed #4a4b4c;
+}
+.file-upload img {
+  height: 30px;
+}
+.inputs-flex {
   display: flex;
   justify-content: space-between;
   gap: 20px;
 }
-.sizeInput {
+.size-input {
   width: 48%;
+}
+input[type='file'] {
+  display: none;
 }
 .dropdown {
   width: 48%;
 }
-.inputsFlex select {
+.inputs-flex select {
   width: 100%;
 }
-.inputsFlex input {
+.inputs-flex input {
   width: 92%;
 }
-.postButton {
+.post-button {
   background-color: #eb5440;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
@@ -432,20 +506,36 @@ select:focus {
   color: #eb5440;
   margin-bottom: 15px;
 }
-.currentImage img {
-  width: 170px;
-  height: 170px;
+.current-image img {
+  width: 140px;
+  height: 140px;
   object-fit: cover;
   border-radius: 10px;
   margin-top: 10px;
+  margin-right: 10px;
 }
+
+.clear-button {
+  position: relative;
+  left: -35px;
+  width: 40px;
+}
+.clear-button img {
+  width: 100%;
+}
+.image-thumbnail {
+  display: flex;
+  flex-direction: row-reverse;
+  width: fit-content;
+}
+
 @media only screen and (max-width: 768px) {
   input,
   select,
   label {
     font-size: 12px;
   }
-  .postButton {
+  .post-button {
     text-align: center;
     font-size: 12px;
     padding: 12px 70px 12px 70px;

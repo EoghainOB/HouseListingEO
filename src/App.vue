@@ -1,21 +1,24 @@
 <template>
   <header>
-    <HeaderMenu />
+    <HeaderMenu :myProperties="myProperties" />
   </header>
-  <div class="wrapper">
-    <router-view></router-view>
-  </div>
+  <router-view></router-view>
   <footer>
-    <FooterMenu />
+    <FooterMenu :myProperties="myProperties" />
   </footer>
 </template>
 
 <script>
-import HeaderMenu from './components/headerMenu.vue'
-import FooterMenu from './components/footerMenu.vue'
+import HeaderMenu from '@/components/HeaderMenu.vue'
+import FooterMenu from '@/components/FooterMenu.vue'
+import { mapGetters } from 'vuex'
 
 export default {
-  components: { HeaderMenu, FooterMenu }
+  components: { HeaderMenu, FooterMenu },
+  // Retrieve the list of myProperties to pass to HeaderMenu and FooterMenu
+  computed: {
+    ...mapGetters(['myProperties'])
+  }
 }
 </script>
 
@@ -30,14 +33,22 @@ body {
   background-color: #f6f6f6;
 }
 
-footer {
-  display: none;
+.wrapper {
+  margin: 0;
+  background-image: url('@/assets/images/img_background@3x.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
-.wrapper {
+.main {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: auto;
+}
+
+footer {
+  display: none;
 }
 
 h1,
@@ -52,7 +63,8 @@ label {
 h4,
 h5,
 p,
-input {
+input,
+textarea {
   font-family: 'Open Sans', sans-serif;
   text-decoration: none;
 }
