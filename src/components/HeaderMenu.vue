@@ -3,7 +3,7 @@
     <div class="header-menu">
       <div class="header-contents">
         <div class="header-logo">
-          <img src="../assets/images/img_logo_dtt@3x.png" alt="DTT" />
+          <img src="@/assets/images/img_logo_dtt@3x.png" alt="DTT" />
         </div>
         <div class="top-menu">
           <nav>

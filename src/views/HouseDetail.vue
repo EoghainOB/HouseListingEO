@@ -27,25 +27,25 @@
               </div>
               <div class="location-zip-city">
                 <h4>
-                  <img src="../assets/icons/ic_location@3x.png" />{{ house.location.zip }},
+                  <img src="@/assets/icons/ic_location@3x.png" />{{ house.location.zip }},
                   {{ house.location.city }}
                 </h4>
               </div>
               <div class="secondary-details">
                 <div class="location-price">
-                  <div><img src="../assets/icons/ic_price@3x.png" /></div>
+                  <div><img src="@/assets/icons/ic_price@3x.png" /></div>
                   <div>
                     <h4>{{ house.price.toLocaleString('en-NL') }}</h4>
                   </div>
                 </div>
                 <div class="home-size">
-                  <div><img src="../assets/icons/ic_size@3x.png" /></div>
+                  <div><img src="@/assets/icons/ic_size@3x.png" /></div>
                   <div>
                     <h4>{{ house.size }} m2</h4>
                   </div>
                 </div>
                 <div class="home-built">
-                  <div><img src="../assets/icons/ic_construction_date@3x.png" /></div>
+                  <div><img src="@/assets/icons/ic_construction_date@3x.png" /></div>
                   <div>
                     <h4>
                       Built in
@@ -57,14 +57,14 @@
             </div>
             <div class="icon-details">
               <div class="home-bed">
-                <h4><img src="../assets/icons/ic_bed@3x.png" />{{ house.rooms.bedrooms }}</h4>
+                <h4><img src="@/assets/icons/ic_bed@3x.png" />{{ house.rooms.bedrooms }}</h4>
               </div>
               <div class="home-bath">
-                <h4><img src="../assets/icons/ic_bath@3x.png" />{{ house.rooms.bathrooms }}</h4>
+                <h4><img src="@/assets/icons/ic_bath@3x.png" />{{ house.rooms.bathrooms }}</h4>
               </div>
               <div class="home-garage">
                 <h4>
-                  <img src="../assets/icons/ic_garage@3x.png" />{{
+                  <img src="@/assets/icons/ic_garage@3x.png" />{{
                     house.hasGarage === true ? 'Yes' : 'No'
                   }}
                 </h4>

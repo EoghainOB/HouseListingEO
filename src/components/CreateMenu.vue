@@ -6,7 +6,7 @@
     <!-- Link to create a new house (desktop) -->
     <router-link to="/house/create">
       <div class="create-button-desktop">
-        <img src="src/assets/icons/ic_plus_white@3x.png" />CREATE NEW
+        <img src="@/assets/icons/ic_plus_white@3x.png" />CREATE NEW
       </div>
     </router-link>
   </div>
@@ -14,7 +14,7 @@
   <div class="btn-mobile">
     <router-link to="/house/create">
       <div class="create-button-mobile">
-        <img src="src/assets/icons/ic_plus_grey@3x.png" />
+        <img src="@/assets/icons/ic_plus_grey@3x.png" />
       </div>
     </router-link>
   </div>

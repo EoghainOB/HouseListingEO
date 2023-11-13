@@ -23,19 +23,19 @@
     </div>
     <div class="icon-details">
       <div class="home-bed">
-        <div><img src="../assets/icons/ic_bed@3x.png" /></div>
+        <div><img src="@/assets/icons/ic_bed@3x.png" /></div>
         <div>
           <h4>{{ house.rooms.bedrooms }}</h4>
         </div>
       </div>
       <div class="home-bath">
-        <div><img src="../assets/icons/ic_bath@3x.png" /></div>
+        <div><img src="@/assets/icons/ic_bath@3x.png" /></div>
         <div>
           <h4>{{ house.rooms.bathrooms }}</h4>
         </div>
       </div>
       <div class="home-size">
-        <div><img src="../assets/icons/ic_size@3x.png" /></div>
+        <div><img src="@/assets/icons/ic_size@3x.png" /></div>
         <div>
           <h4>{{ house.size }} m2</h4>
         </div>

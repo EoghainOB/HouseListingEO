@@ -3,7 +3,7 @@
     <!-- Input field for searching houses -->
     <div class="input-form">
       <form class="main-search">
-        <div><img src="src/assets/icons/ic_search@3x.png" alt="search" /></div>
+        <div><img src="@/assets/icons/ic_search@3x.png" alt="search" /></div>
         <div class="input-field">
           <input
             v-model="searchQuery"

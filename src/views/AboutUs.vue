@@ -13,7 +13,7 @@
       </div>
       <div class="dev-tag">
         <h1>Design & Development</h1>
-        <img src="../assets/images/img_logo_dtt@3x.png" alt="DTT" />
+        <img src="@/assets/images/img_logo_dtt@3x.png" alt="DTT" />
       </div>
     </div>
   </div>
