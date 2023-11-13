@@ -14,7 +14,7 @@
         </div>
         <!-- Clear search icon (visible when search query is not empty) -->
         <div v-if="searchQuery" @click="clearSearchQuery()" class="clear-icon">
-          <img src="src/assets/icons/ic_clear@3x.png" alt="clear" />
+          <img src="@/assets/icons/ic_clear@3x.png" alt="clear" />
         </div>
       </form>
     </div>
