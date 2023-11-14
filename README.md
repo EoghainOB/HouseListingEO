@@ -1,4 +1,4 @@
-# House Listing
+# House Listing EO
 
 This is a House listings web application, which allows the user to view a list of houses that are currently available for sale, and create, edit and delete their own listings.
 
