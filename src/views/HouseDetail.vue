@@ -27,7 +27,9 @@
               </div>
               <div class="location-zip-city">
                 <h4>
-                  <img src="@/assets/icons/ic_location@3x.png" />{{ house.location.zip }},
+                  <img src="@/assets/icons/ic_location@3x.png" />{{
+                    house.location.zip.toUpperCase()
+                  }},
                   {{ house.location.city }}
                 </h4>
               </div>
@@ -114,7 +116,6 @@ export default {
       apiService
         .getHouseById(houseId)
         .then((response) => {
-          console.log(response)
           this.house = response.data[0]
         })
         .catch((error) => {

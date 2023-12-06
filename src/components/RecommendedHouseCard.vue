@@ -17,7 +17,7 @@
         <h4>€ {{ house.price.toLocaleString('en-NL') }}</h4>
       </div>
       <div class="location-zip-city">
-        <h4>{{ house.location.zip }}, {{ house.location.city }}</h4>
+        <h4>{{ house.location.zip.toUpperCase() }}, {{ house.location.city }}</h4>
       </div>
     </div>
     <div class="icon-details">

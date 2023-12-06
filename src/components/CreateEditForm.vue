@@ -52,10 +52,12 @@
         type="text"
         placeholder="e.g. 1000 AA"
         v-model="formData.zip"
-        :class="{ required: showError('zip') }"
+        :class="{ required: showError('zip'), error: showError('zip') }"
         @input="clearError('zip')"
       />
-      <span v-if="showError('zip')" class="error-text"><h3>Required field missing.</h3></span>
+      <span v-if="showError('zip')" class="error-text"
+        ><h3>Invalid ZIP code format. Required field missing.</h3></span
+      >
     </div>
     <div>
       <label for="city">City*</label>
@@ -347,6 +349,13 @@ export default {
       if (!imageFile) {
         this.errors.image = true
       } else {
+        // Validate the file type
+        const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png']
+        if (!allowedTypes.includes(imageFile.type)) {
+          this.errors.image = true
+          return
+        }
+
         this.errors.image = false
         // Create a FileReader to read the selected image
         const reader = new FileReader()
@@ -386,6 +395,14 @@ export default {
           isValid = false
         }
       })
+
+      // Validate ZIP code format using regex
+      const zipRegex = /^\d{4} [A-Za-z]{2}$/
+      if (!zipRegex.test(this.formData.zip)) {
+        this.errors.zip = true
+        isValid = false
+      }
+
       return isValid
     },
     // Function to check if an error should be displayed for a field
