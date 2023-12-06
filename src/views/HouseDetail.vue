@@ -95,6 +95,10 @@ export default {
       house: null
     }
   },
+  watch: {
+    // Watch for changes in the route parameters
+    '$route.params.houseId': 'fetchHouseDetails'
+  },
   mounted() {
     const houseId = this.$route.params.houseId
     this.fetchHouseDetails(houseId)
@@ -110,6 +114,7 @@ export default {
       apiService
         .getHouseById(houseId)
         .then((response) => {
+          console.log(response)
           this.house = response.data[0]
         })
         .catch((error) => {

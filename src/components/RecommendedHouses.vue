@@ -2,7 +2,12 @@
   <div class="recommended-block">
     <h2>Recommend for you</h2>
     <ul v-if="houseId">
-      <li class="house-container" v-for="house in filteredHouses" :key="house.id">
+      <li
+        @click="showDetails(house.id)"
+        class="house-container"
+        v-for="house in filteredHouses"
+        :key="house.id"
+      >
         <RecommendedHouseCard :house="house" />
       </li>
     </ul>
@@ -25,7 +30,11 @@ export default {
   },
   methods: {
     // Map Vuex actions for fetching property listings
-    ...mapActions(['fetchHouses'])
+    ...mapActions(['fetchHouses']),
+    showDetails(houseId) {
+      // Navigate to the property details page
+      this.$router.push({ name: 'HouseDetail', params: { houseId: houseId } })
+    }
   },
   computed: {
     ...mapGetters(['allHouses']),

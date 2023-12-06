@@ -1,13 +1,9 @@
 import axios from 'axios'
 
-const baseURL = 'https://api.intern.d-tt.nl/api/houses'
+const baseURL = 'http://localhost:8080/houses'
 
 const api = axios.create({
-  baseURL,
-  headers: {
-    'X-Api-Key': 'D1FC8mrHuyO34ljfBMYcsvP2nWX_ekaS',
-    'Content-Type': 'multipart/form-data'
-  }
+  baseURL
 })
 
 export default {
