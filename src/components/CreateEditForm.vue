@@ -307,23 +307,31 @@ export default {
       }
       if (this.isFormValid()) {
         // If the entire form is valid, proceed to handle form submission
-        const imageFile = this.formData.image
         try {
-          let response
           if (this.isEditPage) {
             // If the form is in edit mode, update the existing property listing
+            const imageFile = this.formData.image
+
             if (imageFile) {
-              // If a new image is selected, upload it
-              await apiService.uploadImage(this.houseId, imageFile)
+              // If a new image is selected, upload it to Cloudinary
+              const cloudinaryURL = await apiService.uploadImage(imageFile)
+              this.formData.image = cloudinaryURL
+              await apiService.updateHouse(this.houseId, this.formData)
             }
-            response = await apiService.updateHouse(this.houseId, this.formData)
             this.$router.push(`/house/${this.houseId}`)
           } else {
             // If the form is not in edit mode, create a new property listing
+            const imageFile = this.formData.image
+
             if (imageFile) {
-              response = await apiService.createHouse(this.formData)
+              // If a new image is selected, upload it to Cloudinary
+              const cloudinaryURL = await apiService.uploadImage(imageFile)
+              this.formData.image = cloudinaryURL
+
+              console.log('BOO', cloudinaryURL)
+
+              const response = await apiService.createHouse(this.formData)
               const houseId = response.data.id
-              await apiService.uploadImage(houseId, imageFile)
               this.$router.push(`/house/${houseId}`)
             } else {
               console.error('Image is required for creating a new house listing')
