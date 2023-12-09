@@ -11,18 +11,71 @@ export default {
   getHouses() {
     return api.get('/')
   },
+
   getHouseById(id) {
     return api.get(`/${id}`)
   },
-  createHouse(formData) {
-    return api.post('/', formData)
+
+  async createHouse(formData) {
+    const latestHouse = await api.get('/')
+    const data = latestHouse.data
+    const length = data.length
+
+    const latestId = length > 0 ? data[length - 1].id : 0
+    const newId = latestId + 1
+
+    const updatedForm = {
+      id: newId,
+      image: formData.image,
+      price: formData.price,
+      rooms: {
+        bedrooms: formData.bedrooms,
+        bathrooms: formData.bathrooms
+      },
+      size: formData.size,
+      description: formData.description,
+      location: {
+        street: formData.street,
+        houseNumber: formData.houseNumber,
+        houseNumberAddition: formData.houseNumberAddition,
+        city: formData.city,
+        zip: formData.zip
+      },
+      constructionYear: formData.constructionYear,
+      hasGarage: formData.hasGarage,
+      createdAt: new Date().toISOString().split('T')[0],
+      madeByMe: true
+    }
+    return api.post('/', updatedForm)
   },
+
   updateHouse(id, formData) {
-    return api.put(`/${id}`, formData)
+    const updatedForm = {
+      image: formData.image,
+      price: formData.price,
+      rooms: {
+        bedrooms: formData.bedrooms,
+        bathrooms: formData.bathrooms
+      },
+      size: formData.size,
+      description: formData.description,
+      location: {
+        street: formData.street,
+        houseNumber: formData.houseNumber,
+        houseNumberAddition: formData.houseNumberAddition,
+        city: formData.city,
+        zip: formData.zip
+      },
+      constructionYear: formData.constructionYear,
+      hasGarage: formData.hasGarage
+    }
+    return api.put(`/${id}`, updatedForm)
   },
+
   deleteHouse(id) {
     return api.delete(`/${id}`)
   },
+
   async uploadImage(imageFile) {
     const formData = new FormData()
     formData.append('file', imageFile)

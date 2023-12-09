@@ -3,19 +3,17 @@
     <!-- Input fields for address information -->
 
     <div>
-      <label for="streetName">Street name*</label>
+      <label for="street">Street name*</label>
       <input
-        id="streetName"
-        name="streetName"
+        id="street"
+        name="street"
         type="text"
         placeholder="Enter the street name"
-        v-model="formData.streetName"
-        :class="{ required: showError('streetName') }"
-        @input="clearError('streetName')"
+        v-model="formData.street"
+        :class="{ required: showError('street') }"
+        @input="clearError('street')"
       />
-      <span v-if="showError('streetName')" class="error-text"
-        ><h3>Required field missing.</h3></span
-      >
+      <span v-if="showError('street')" class="error-text"><h3>Required field missing.</h3></span>
     </div>
     <div class="inputs-flex">
       <div>
@@ -34,13 +32,13 @@
         >
       </div>
       <div>
-        <label for="numberAddition">Addition (optional)</label>
+        <label for="houseNumberAddition">Addition (optional)</label>
         <input
-          id="numberAddition"
-          name="numberAddition"
+          id="houseNumberAddition"
+          name="houseNumberAddition"
           type="text"
           placeholder="e.g. A"
-          v-model="formData.numberAddition"
+          v-model="formData.houseNumberAddition"
         />
       </div>
     </div>
@@ -242,19 +240,19 @@ export default {
     return {
       // Form data and validation errors
       formData: {
+        image: '',
         price: null,
         bedrooms: null,
         bathrooms: null,
         size: null,
-        streetName: '',
-        houseNumber: null,
-        numberAddition: '',
-        zip: '',
-        city: '',
-        constructionYear: null,
-        hasGarage: '',
         description: '',
-        image: ''
+        street: '',
+        houseNumber: null,
+        houseNumberAddition: '',
+        city: '',
+        zip: '',
+        constructionYear: null,
+        hasGarage: ''
       },
       errors: {},
       isEditPage: false,
@@ -272,9 +270,9 @@ export default {
         .then((response) => {
           const houseData = response.data[0]
           this.formData = {
-            streetName: houseData.location.street,
+            street: houseData.location.street,
             houseNumber: houseData.location.houseNumber,
-            numberAddition: houseData.location.houseNumberAddition,
+            houseNumberAddition: houseData.location.houseNumberAddition,
             zip: houseData.location.zip,
             city: houseData.location.city,
             price: houseData.price,
@@ -327,8 +325,6 @@ export default {
               // If a new image is selected, upload it to Cloudinary
               const cloudinaryURL = await apiService.uploadImage(imageFile)
               this.formData.image = cloudinaryURL
-
-              console.log('BOO', cloudinaryURL)
 
               const response = await apiService.createHouse(this.formData)
               const houseId = response.data.id
@@ -383,7 +379,7 @@ export default {
       let isValid = true
 
       const requiredFields = [
-        'streetName',
+        'street',
         'houseNumber',
         'zip',
         'city',
