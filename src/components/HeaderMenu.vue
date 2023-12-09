@@ -7,7 +7,6 @@
         </div>
         <div class="top-menu">
           <nav>
-            <!-- Link to the Houses page (with dynamic active class) -->
             <router-link
               to="/"
               class="nav-link"
@@ -17,7 +16,7 @@
             >
               Houses
             </router-link>
-            <!-- Link to the My Listings page (with dynamic active class) -->
+
             <router-link
               v-if="myProperties.length"
               to="/mylistings"
@@ -28,7 +27,7 @@
             >
               My Listings
             </router-link>
-            <!-- Link to the About page (with dynamic active class) -->
+
             <router-link
               to="/about"
               class="nav-link"

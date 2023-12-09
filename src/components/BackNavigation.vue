@@ -1,14 +1,12 @@
 <template>
   <div @click="handleClick">
     <div class="return">
-      <!-- Conditional class for the return arrow based on route and device -->
       <div
         :class="{
           returnArrowWhite: isHouseDetail && isMobile,
           returnArrowGrey: !isMobile || !isHouseDetail
         }"
       >
-        <!-- Dynamic image source for the return arrow -->
         <img
           :src="
             isHouseDetail && isMobile
@@ -19,7 +17,6 @@
         />
       </div>
       <div class="return-text">
-        <!-- Receives the linkText as prop -->
         <h3>{{ linkText }}</h3>
       </div>
     </div>
@@ -36,7 +33,6 @@ export default {
   },
   methods: {
     handleClick() {
-      // Handle navigation based on the route
       if (this.$route.name === 'HouseEdit') {
         this.$router.go(-1)
       } else {
@@ -46,7 +42,6 @@ export default {
   },
   computed: {
     isHouseDetail() {
-      // Check if the current route is the detail page
       return this.$route.name === 'HouseDetail'
     },
     isMobile() {

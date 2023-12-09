@@ -98,7 +98,6 @@ export default {
     }
   },
   watch: {
-    // Watch for changes in the route parameters
     '$route.params.houseId': 'fetchHouseDetails'
   },
   mounted() {
@@ -106,12 +105,10 @@ export default {
     this.fetchHouseDetails(houseId)
   },
   created() {
-    // Get the house ID from the route parameters
     const houseId = this.$route.params.houseId
     this.fetchHouseDetails(houseId)
   },
   methods: {
-    // Call the API service to get house details by ID
     fetchHouseDetails(houseId) {
       apiService
         .getHouseById(houseId)

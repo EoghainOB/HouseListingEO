@@ -15,7 +15,6 @@ import { mapGetters } from 'vuex'
 
 export default {
   components: { HeaderMenu, FooterMenu },
-  // Retrieve the list of myProperties to pass to HeaderMenu and FooterMenu
   computed: {
     ...mapGetters(['myProperties'])
   }

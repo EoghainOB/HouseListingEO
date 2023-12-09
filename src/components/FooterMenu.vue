@@ -3,7 +3,6 @@
     <div class="footer-menu">
       <div class="bottom-menu">
         <div class="nav-icons">
-          <!-- Link to the Home page with dynamic icon -->
           <router-link to="/" class="nav-link">
             <img
               :src="
@@ -16,7 +15,6 @@
           </router-link>
         </div>
         <div class="nav-icons" v-if="myProperties.length">
-          <!-- Link to the My Listings page with dynamic icon -->
           <router-link to="/mylistings" class="nav-link">
             <img
               :src="
@@ -29,7 +27,6 @@
           </router-link>
         </div>
         <div class="nav-icons">
-          <!-- Link to the About page with dynamic icon -->
           <router-link to="/about" class="nav-link">
             <img
               :src="

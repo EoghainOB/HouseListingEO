@@ -16,7 +16,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import RecommendedHouseCard from './RecommendedHouseCard.vue'
+import RecommendedHouseCard from '@/components/RecommendedHouseCard.vue'
 
 export default {
   components: { RecommendedHouseCard },
@@ -25,36 +25,29 @@ export default {
     houseId: Number
   },
   created() {
-    // Fetch property listings when the component is created
     this.fetchHouses()
   },
   methods: {
-    // Map Vuex actions for fetching property listings
     ...mapActions(['fetchHouses']),
     showDetails(houseId) {
-      // Navigate to the property details page
       this.$router.push({ name: 'HouseDetail', params: { houseId: houseId } })
     }
   },
   computed: {
     ...mapGetters(['allHouses']),
     filteredHouses() {
-      // Get the current house details from the Vuex store
       const currentHouse = this.allHouses.find((house) => house.id === this.houseId)
 
       if (currentHouse) {
-        // Filter houses with the same postcode or city
         const filteredHouses = this.allHouses.filter(
           (house) =>
             (house.location.zip === currentHouse.location.zip ||
               house.location.city === currentHouse.location.city) &&
             house.id !== currentHouse.id
         )
-        // Sort by price
         filteredHouses.sort((a, b) => a.price - b.price)
-        // Check if there are matches
+
         if (filteredHouses.length === 0) {
-          // If no matches, show the 3 newest houses excluding the current house
           const newestHouses = this.allHouses
             .filter((house) => house.id !== currentHouse.id)
             .sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded))

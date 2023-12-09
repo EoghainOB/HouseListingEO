@@ -1,7 +1,5 @@
 <template>
   <form @submit.prevent="submitForm" enctype="multipart/form-data">
-    <!-- Input fields for address information -->
-
     <div>
       <label for="street">Street name*</label>
       <input
@@ -70,13 +68,9 @@
       />
       <span v-if="showError('city')" class="error-text"><h3>Required field missing.</h3></span>
     </div>
-
-    <!-- Upload photo input field -->
     <div>
       <label>Upload picture (PNG or JPG)*</label>
-      <!-- Check if there is a current image and no preview then show thumbnail -->
       <div class="image-thumbnail" v-if="formData.image && !imagePreview">
-        <!-- Click the clear icon to show the uploader -->
         <div class="clear-button" @click="showUploader">
           <img src="@/assets/icons/ic_clear_white@3x.png" alt="Clear" />
         </div>
@@ -84,9 +78,7 @@
           <img :src="formData.image" alt="Current Image" />
         </div>
       </div>
-      <!-- Check if there is a preview then show thumbnail -->
       <div class="image-thumbnail" v-if="imagePreview">
-        <!-- Click the clear icon to show the uploader -->
         <div class="clear-button" @click="showUploader">
           <img src="@/assets/icons/ic_clear_white@3x.png" alt="Clear" />
         </div>
@@ -94,8 +86,6 @@
           <img :src="imagePreview" alt="Image Preview" />
         </div>
       </div>
-
-      <!-- Image uploader to show only if there is no current image or preview -->
       <label for="imageInput" class="uploader" v-if="!formData.image && !imagePreview">
         <div class="file-upload">
           <img src="@/assets/icons/ic_upload@3x.png" alt="Upload Image" />
@@ -238,7 +228,6 @@ export default {
   },
   data() {
     return {
-      // Form data and validation errors
       formData: {
         image: '',
         price: null,
@@ -260,7 +249,6 @@ export default {
     }
   },
   created() {
-    // Load existing property data if in edit mode
     this.houseId = this.$route.query.houseId
 
     if (this.houseId) {
@@ -291,12 +279,9 @@ export default {
     }
   },
   methods: {
-    // Function to handle form submission
     async submitForm() {
-      // Clear any previous error related to image
       this.clearError('image')
 
-      // Check the validity of the image input element, and if it's not valid, set an error flag for image
       if (
         !this.formData.image ||
         (this.$refs.imageInput && !this.$refs.imageInput.checkValidity())
@@ -304,25 +289,20 @@ export default {
         this.errors.image = true
       }
       if (this.isFormValid()) {
-        // If the entire form is valid, proceed to handle form submission
         try {
           if (this.isEditPage) {
-            // If the form is in edit mode, update the existing property listing
             const imageFile = this.formData.image
 
             if (imageFile) {
-              // If a new image is selected, upload it to Cloudinary
               const cloudinaryURL = await apiService.uploadImage(imageFile)
               this.formData.image = cloudinaryURL
               await apiService.updateHouse(this.houseId, this.formData)
             }
             this.$router.push(`/house/${this.houseId}`)
           } else {
-            // If the form is not in edit mode, create a new property listing
             const imageFile = this.formData.image
 
             if (imageFile) {
-              // If a new image is selected, upload it to Cloudinary
               const cloudinaryURL = await apiService.uploadImage(imageFile)
               this.formData.image = cloudinaryURL
 
@@ -341,7 +321,6 @@ export default {
     clearErrorForHasGarage() {
       this.clearError('hasGarage')
     },
-    // Shows the uploader if there is no current image or preview by setting both to null
     showUploader() {
       this.formData.image = null
       this.imagePreview = null
@@ -353,7 +332,6 @@ export default {
       if (!imageFile) {
         this.errors.image = true
       } else {
-        // Validate the file type
         const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png']
         if (!allowedTypes.includes(imageFile.type)) {
           this.errors.image = true
@@ -361,20 +339,15 @@ export default {
         }
 
         this.errors.image = false
-        // Create a FileReader to read the selected image
         const reader = new FileReader()
         reader.onload = (e) => {
-          // Set the imagePreview property to the URL of the loaded image
           this.imagePreview = e.target.result
         }
-        // Read the selected image file as a Data URL
         reader.readAsDataURL(imageFile)
-        // Assign the selected image file to a formData property
         this.formData.image = imageFile
       }
     },
     isFormValid() {
-      // Function to validate the form data
       this.errors = {}
       let isValid = true
 
@@ -400,7 +373,6 @@ export default {
         }
       })
 
-      // Validate ZIP code format using regex
       const zipRegex = /^\d{4} [A-Za-z]{2}$/
       if (!zipRegex.test(this.formData.zip)) {
         this.errors.zip = true
@@ -409,11 +381,9 @@ export default {
 
       return isValid
     },
-    // Function to check if an error should be displayed for a field
     showError(fieldName) {
       return this.errors[fieldName]
     },
-    // Function to clear errors for a field
     clearError(fieldName) {
       this.errors[fieldName] = false
     }
