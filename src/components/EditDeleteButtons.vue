@@ -34,12 +34,12 @@ export default {
     return {
       isModalOpen: false,
       desktopIcons: {
-        edit: '/src/assets/icons/ic_edit@3x.png',
-        delete: '/src/assets/icons/ic_delete@3x.png'
+        edit: '@/assets/icons/ic_edit@3x.png',
+        delete: '@/assets/icons/ic_delete@3x.png'
       },
       mobileIcons: {
-        edit: '/src/assets/icons/ic_edit_white@3x.png',
-        delete: '/src/assets/icons/ic_delete_white@3x.png'
+        edit: '@/assets/icons/ic_edit_white@3x.png',
+        delete: '@/assets/icons/ic_delete_white@3x.png'
       }
     }
   },
