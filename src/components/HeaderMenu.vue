@@ -3,7 +3,7 @@
     <div class="header-menu">
       <div class="header-contents">
         <div class="header-logo">
-          <img src="@/assets/images/img_logo_dtt@3x.png" alt="DTT" />
+          <img src="@/assets/images/HousesLogo.jpg" alt="Living - Real Estate" />
         </div>
         <div class="top-menu">
           <nav>
@@ -64,7 +64,7 @@ export default {
   margin: auto;
 }
 .header-logo img {
-  height: 45px;
+  height: 55px;
   align-content: center;
 }
 .header-contents {

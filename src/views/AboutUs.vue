@@ -2,7 +2,7 @@
   <div class="main">
     <div class="about-page">
       <div class="section-title"><h1>About</h1></div>
-      <div class="dev-about"><h1>About DTT Real Estate</h1></div>
+      <div class="dev-about"><h1>About Living - Real Estate</h1></div>
       <div>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut quis voluptatem, corporis
@@ -10,10 +10,6 @@
           nihil. Obcaecati illo distinctio ipsam eum aspernatur. Provident! Lorem ipsum dolor sit
           amet consectetur adipisicing elit. Ut quis voluptatem, corporis repellat,
         </p>
-      </div>
-      <div class="dev-tag">
-        <h1>Design & Development</h1>
-        <img src="@/assets/images/img_logo_dtt@3x.png" alt="DTT" />
       </div>
     </div>
   </div>
@@ -36,13 +32,6 @@ export default {
   margin-top: 30px;
   align-items: center;
   height: 80px;
-}
-.dev-tag img {
-  height: 85px;
-  margin-top: 20px;
-}
-.dev-tag {
-  margin-top: 30px;
 }
 p {
   font-size: 18px;
