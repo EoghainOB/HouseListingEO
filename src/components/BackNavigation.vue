@@ -10,8 +10,8 @@
         <img
           :src="
             isHouseDetail && isMobile
-              ? '/src/assets/icons/ic_back_white@3x.png'
-              : '/src/assets/icons/ic_back_grey@3x.png'
+              ? '@/assets/icons/ic_back_white@3x.png'
+              : '@/assets/icons/ic_back_grey@3x.png'
           "
           alt="Return"
         />
