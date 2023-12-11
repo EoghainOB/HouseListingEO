@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const baseURL = 'https://living-house-c4ca81a82007.herokuapp.com/houses'
-const cloudinaryUploadURL = 'https://api.cloudinary.com/v1_1/dotzk2hkd/image/upload'
+const baseURL = import.meta.env.VITE_BASE_URL
+const cloudinaryUploadURL = import.meta.env.VITE_CLOUDINARY_UPLOAD_URL
 
 const api = axios.create({
   baseURL
