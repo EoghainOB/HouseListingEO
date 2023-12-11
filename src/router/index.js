@@ -39,7 +39,7 @@ const router = createRouter({
       component: HouseList
     }
   ],
-  // Jump to top of page when navigating
+
   scrollBehavior() {
     return { top: 0 }
   }

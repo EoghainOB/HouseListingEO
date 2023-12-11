@@ -7,14 +7,7 @@
           returnArrowGrey: !isMobile || !isHouseDetail
         }"
       >
-        <img
-          :src="
-            isHouseDetail && isMobile
-              ? '@/assets/icons/ic_back_white@3x.png'
-              : '@/assets/icons/ic_back_grey@3x.png'
-          "
-          alt="Return"
-        />
+        <img :src="backIcon" alt="Return" />
       </div>
       <div class="return-text">
         <h3>{{ linkText }}</h3>
@@ -24,6 +17,9 @@
 </template>
 
 <script>
+import backIconWhite from '@/assets/icons/ic_back_white@3x.png'
+import backIconGrey from '@/assets/icons/ic_back_grey@3x.png'
+
 export default {
   name: 'BackOverview',
   props: {
@@ -41,6 +37,9 @@ export default {
     }
   },
   computed: {
+    backIcon() {
+      return this.isMobile ? (this.isHouseDetail ? backIconGrey : backIconWhite) : backIconWhite
+    },
     isHouseDetail() {
       return this.$route.name === 'HouseDetail'
     },
