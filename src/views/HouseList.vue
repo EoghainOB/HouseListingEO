@@ -6,8 +6,8 @@
       <ul class="house-listing">
         <div class="results-found" v-if="searchQuery.length > 0">
           <h2 v-if="filteredHouses.length > 0">
-            {{ filteredHouses.length }} result<span v-if="filteredHouses.length !== 1">s</span>
-            found
+            {{ filteredHouses.length }} result<span v-if="filteredHouses.length !== 1">s </span
+            >found
           </h2>
         </div>
         <div class="house-list-empty" v-if="filteredHouses < 1 && searchQuery.length > 0">
