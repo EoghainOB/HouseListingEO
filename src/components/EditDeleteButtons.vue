@@ -2,14 +2,24 @@
   <div class="edit-del-buttons">
     <div @click="editHouse($event)">
       <img
-        :src="isMobile ? (isHomePage ? mobileIcons.edit : desktopIcons.edit) : desktopIcons.edit"
+        :src="
+          isMobile
+            ? isHomePage
+              ? '@/assets/icons/ic_edit_white@3x.png'
+              : '@/assets/icons/ic_edit@3x.png'
+            : '@/assets/icons/ic_edit@3x.png'
+        "
         alt="edit"
       />
     </div>
     <div @click="openModal($event)">
       <img
         :src="
-          isMobile ? (isHomePage ? mobileIcons.delete : desktopIcons.delete) : desktopIcons.delete
+          isMobile
+            ? isHomePage
+              ? '/assets/icons/ic_delete_white@3x.png'
+              : '@/assets/icons/ic_delete@3x.png'
+            : '@/assets/icons/ic_delete@3x.png'
         "
         alt="delete"
       />
@@ -32,15 +42,7 @@ export default {
   },
   data() {
     return {
-      isModalOpen: false,
-      desktopIcons: {
-        edit: '/assets/icons/ic_edit@3x.png',
-        delete: '/assets/icons/ic_delete@3x.png'
-      },
-      mobileIcons: {
-        edit: '/assets/icons/ic_edit_white@3x.png',
-        delete: '/assets/icons/ic_delete_white@3x.png'
-      }
+      isModalOpen: false
     }
   },
   methods: {
