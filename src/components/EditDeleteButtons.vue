@@ -16,7 +16,6 @@
 import ModalPopup from '@/components/ModalPopup.vue'
 import apiService from '@/services/apiService'
 
-// Import the images
 import editIconWhite from '@/assets/icons/ic_edit_white@3x.png'
 import editIcon from '@/assets/icons/ic_edit@3x.png'
 import deleteIconWhite from '@/assets/icons/ic_delete_white@3x.png'
@@ -34,7 +33,6 @@ export default {
     }
   },
   computed: {
-    // Use computed properties to dynamically select the correct image based on conditions
     editIcon() {
       return this.isMobile ? (this.isHomePage ? editIconWhite : editIcon) : editIcon
     },
