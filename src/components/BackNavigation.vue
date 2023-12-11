@@ -38,7 +38,7 @@ export default {
   },
   computed: {
     backIcon() {
-      return this.isMobile ? (this.isHouseDetail ? backIconGrey : backIconWhite) : backIconWhite
+      return this.isMobile ? (this.isHouseDetail ? backIconWhite : backIconGrey) : backIconGrey
     },
     isHouseDetail() {
       return this.$route.name === 'HouseDetail'
