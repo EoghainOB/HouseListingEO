@@ -17,7 +17,7 @@
         :src="
           isMobile
             ? isHomePage
-              ? '/assets/icons/ic_delete_white@3x.png'
+              ? '@/assets/icons/ic_delete_white@3x.png'
               : '@/assets/icons/ic_delete@3x.png'
             : '@/assets/icons/ic_delete@3x.png'
         "
