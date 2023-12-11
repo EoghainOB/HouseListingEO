@@ -3,13 +3,11 @@
     <div @click="editHouse($event)">
       <img
         :src="
-          require(
-            isMobile
-              ? isHomePage
-                ? '@/assets/icons/ic_edit_white@3x.png'
-                : '@/assets/icons/ic_edit@3x.png'
-              : '@/assets/icons/ic_edit@3x.png'
-          )
+          isMobile
+            ? isHomePage
+              ? require('@/assets/icons/ic_edit_white@3x.png')
+              : require('@/assets/icons/ic_edit@3x.png')
+            : require('@/assets/icons/ic_edit@3x.png')
         "
         alt="edit"
       />
@@ -17,13 +15,11 @@
     <div @click="openModal($event)">
       <img
         :src="
-          require(
-            isMobile
-              ? isHomePage
-                ? '@/assets/icons/ic_delete_white@3x.png'
-                : '@/assets/icons/ic_delete@3x.png'
-              : '@/assets/icons/ic_delete@3x.png'
-          )
+          isMobile
+            ? isHomePage
+              ? require('@/assets/icons/ic_delete_white@3x.png')
+              : require('@/assets/icons/ic_delete@3x.png')
+            : require('@/assets/icons/ic_delete@3x.png')
         "
         alt="delete"
       />
