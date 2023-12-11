@@ -1,4 +1,4 @@
-# Living - House Listing a[[
+# Living - House Listing app
 
 This is a House listings web application, which allows the user to view a list of houses that are currently available for sale, as well as create, edit and delete their own listings. The front end has been made with `VueJS` and has been optimised for both desktop and mobile use. The user can filter the houses by name or location using the search input box, while they can also filter those results by size or price. Each house has their own page with more details. The front end also incorporates the ability to create or edit your own listing, the form incorporating a preview image feature as well as form validation.
 
