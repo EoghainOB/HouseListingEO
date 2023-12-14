@@ -69,7 +69,7 @@
       <span v-if="showError('city')" class="error-text"><h3>Required field missing.</h3></span>
     </div>
     <div>
-      <label>Upload picture (PNG or JPG)*</label>
+      <label>Upload picture (PNG, JPG or HEIC)*</label>
       <div class="image-thumbnail" v-if="formData.image && !imagePreview">
         <div class="clear-button" @click="showUploader">
           <img src="@/assets/icons/ic_clear_white@3x.png" alt="Clear" />

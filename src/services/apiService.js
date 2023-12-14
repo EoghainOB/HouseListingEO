@@ -87,7 +87,12 @@ export default {
       })
 
       const parsed = await fetched.json()
-      const imageUrl = parsed.secure_url
+      let imageUrl = parsed.secure_url
+
+      if (imageUrl.endsWith('.heic')) {
+        imageUrl = imageUrl.replace(/\.heic$/, '.jpg')
+      }
+
       return imageUrl
     } catch (error) {
       console.error('Error uploading image to Cloudinary:', error)
