@@ -335,7 +335,6 @@ export default {
         this.errors.image = true
       } else {
         const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/heic']
-
         if (!allowedTypes.includes(imageFile.type)) {
           this.errors.image = true
           return
@@ -343,27 +342,10 @@ export default {
 
         this.errors.image = false
         const reader = new FileReader()
-
-        if (imageFile.type === 'image/heic') {
-          // Use heic2any to convert HEIC to JPEG
-          import('heic2any').then((heic2any) => {
-            const heicBlob = new Blob([imageFile], { type: 'image/heic' })
-            heic2any(heicBlob)
-              .to('image/jpeg')
-              .then((jpegBlob) => {
-                reader.readAsDataURL(jpegBlob)
-              })
-              .catch((error) => {
-                console.error('Error converting HEIC to JPEG:', error)
-              })
-          })
-        } else {
-          reader.readAsDataURL(imageFile)
-        }
-
         reader.onload = (e) => {
           this.imagePreview = e.target.result
         }
+        reader.readAsDataURL(imageFile)
         this.formData.image = imageFile
       }
     },
