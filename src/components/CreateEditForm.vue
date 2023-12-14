@@ -99,7 +99,9 @@
           />
         </div>
       </label>
-      <span v-if="showError('image')" class="error-text"><h3>Required field missing.</h3></span>
+      <span v-if="showError('image')" class="error-text"
+        ><h3>Incorrect format or required field missing.</h3></span
+      >
     </div>
 
     <div>

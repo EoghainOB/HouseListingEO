@@ -100,10 +100,6 @@ export default {
   watch: {
     '$route.params.houseId': 'fetchHouseDetails'
   },
-  mounted() {
-    const houseId = this.$route.params.houseId
-    this.fetchHouseDetails(houseId)
-  },
   created() {
     const houseId = this.$route.params.houseId
     this.fetchHouseDetails(houseId)
