@@ -220,6 +220,7 @@
 
 <script>
 import apiService from '@/services/apiService'
+import heic2any from 'heic2any'
 
 export default {
   name: 'CreateEditForm',
@@ -327,7 +328,7 @@ export default {
       this.formData.image = null
       this.imagePreview = null
     },
-    handleImageUpload() {
+    async handleImageUpload() {
       const imageInput = this.$refs.imageInput
       const imageFile = imageInput.files[0]
 
@@ -341,11 +342,23 @@ export default {
         }
 
         this.errors.image = false
+
         const reader = new FileReader()
-        reader.onload = (e) => {
-          this.imagePreview = e.target.result
+
+        if (imageFile.type === 'image/heic') {
+          try {
+            const jpegBlob = await heic2any({ blob: imageFile })
+            this.imagePreview = URL.createObjectURL(jpegBlob)
+          } catch (error) {
+            console.error('Error converting HEIC to JPEG:', error)
+          }
+        } else {
+          reader.onload = (e) => {
+            this.imagePreview = e.target.result
+          }
+          reader.readAsDataURL(imageFile)
         }
-        reader.readAsDataURL(imageFile)
+
         this.formData.image = imageFile
       }
     },
