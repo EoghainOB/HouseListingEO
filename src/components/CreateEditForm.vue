@@ -334,7 +334,7 @@ export default {
       if (!imageFile) {
         this.errors.image = true
       } else {
-        const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png']
+        const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/heic']
         if (!allowedTypes.includes(imageFile.type)) {
           this.errors.image = true
           return
